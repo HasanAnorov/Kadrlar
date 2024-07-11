@@ -9,4 +9,9 @@
         android:name="com.ierusalem.kadrlar.features.login.presentation.LoginFragment"
         android:label="LoginFragment" />
 
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ierusalem.kadrlar.features.settings.presentation.SettingsFragment"
+        android:label="SettingsFragment" />
+
 </navigation>
