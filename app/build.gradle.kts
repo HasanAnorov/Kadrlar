@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -20,6 +22,11 @@ android {
         }
     }
 
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -37,6 +44,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        viewBinding = true
         compose = true
     }
     composeOptions {
@@ -59,6 +67,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +76,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    //app compat
+    implementation(libs.androidx.appcompat)
+
+    //view binding
+    implementation (libs.androidx.ui.viewbinding)
+
+    //google fonts
+    implementation(libs.androidx.compose.ui.googlefonts)
+
+    //datastore used for preferences
+    implementation (libs.androidx.datastore.preferences)
 }

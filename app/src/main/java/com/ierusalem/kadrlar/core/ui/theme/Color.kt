@@ -1,4 +1,4 @@
-package com.ierusalem.kadrlar.ui.theme
+package com.ierusalem.kadrlar.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
