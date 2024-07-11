@@ -7,7 +7,6 @@ import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
 import com.ierusalem.kadrlar.core.utils.FieldValidator
-import com.ierusalem.androchat.features.auth.login.presentation.LoginFormEvents
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +27,6 @@ class LoginViewModel @Inject constructor(
     fun handleEvents(event: LoginFormEvents){
         when(event){
             LoginFormEvents.Login -> loginUser()
-            LoginFormEvents.ToRegister -> emitNavigation(LoginNavigation.ToRegister)
             is LoginFormEvents.UsernameChanged -> {
                 _state.update {
                     it.copy(
@@ -79,11 +77,7 @@ class LoginViewModel @Inject constructor(
                 passwordError = null,
             )
         }
-
-//        viewModelScope.launch {
-//            dataStorePreferenceRepository.setUsername(state.value.username)
-//            emitNavigation(LoginNavigation.ToHome)
-//        }
+        emitNavigation(LoginNavigation.ToHome)
     }
 
 }

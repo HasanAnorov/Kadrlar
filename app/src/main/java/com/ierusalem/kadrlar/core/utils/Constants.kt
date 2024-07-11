@@ -1,5 +1,7 @@
 package com.ierusalem.kadrlar.core.utils
 
+import com.ierusalem.kadrlar.core.app.AppLanguage
+
 object Constants{
 
     const val DATA_STORE_NAME = "AppDataStore"
@@ -14,5 +16,21 @@ object Constants{
     const val DEFAULT_LOCALE = RUSSIAN_LOCALE
 
     const val MINIMUM_LOGIN_LENGTH = 3
+
+    fun getLanguageCode(language: AppLanguage): String {
+        return when (language) {
+            AppLanguage.English -> ENGLISH_LOCALE
+            AppLanguage.Russian -> RUSSIAN_LOCALE
+        }
+    }
+
+    fun getLanguageFromCode(languageCode: String): AppLanguage {
+        return when (languageCode) {
+            ENGLISH_LOCALE -> AppLanguage.English
+            RUSSIAN_LOCALE -> AppLanguage.Russian
+            else -> AppLanguage.Russian
+        }
+    }
+
 
 }

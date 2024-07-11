@@ -1,6 +1,8 @@
 package com.ierusalem.kadrlar.core.app
 
 import android.app.Application
+import com.ierusalem.kadrlar.core.connectivity.ConnectivityObserver
+import com.ierusalem.kadrlar.core.connectivity.NetworkConnectivityObserver
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
 import com.ierusalem.kadrlar.core.utils.FieldValidator
 import dagger.Module
@@ -17,6 +19,12 @@ object AppModule {
     @Provides
     fun provideFieldValidator(): FieldValidator {
         return FieldValidator()
+    }
+
+    @Provides
+    @Singleton
+    fun provideConnectivityObserver(application: Application): ConnectivityObserver {
+        return NetworkConnectivityObserver(context = application)
     }
 
     @Provides
