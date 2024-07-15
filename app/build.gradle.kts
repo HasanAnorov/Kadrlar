@@ -81,6 +81,9 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
+    //glide
+    implementation (libs.landscapist.glide)
+
     //icons extended version
     implementation(libs.androidx.compose.material.iconsExtended)
 

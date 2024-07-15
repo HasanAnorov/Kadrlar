@@ -3,12 +3,13 @@ package com.ierusalem.kadrlar.features.home.domain
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ierusalem.kadrlar.core.connectivity.ConnectivityObserver
 import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
 import com.ierusalem.androchat.core.utils.UiText
 import com.ierusalem.kadrlar.R
+import com.ierusalem.kadrlar.core.connectivity.ConnectivityObserver
+import com.ierusalem.kadrlar.core.utils.log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,8 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     connectivityObserver: ConnectivityObserver
-):ViewModel(),
-    NavigationEventDelegate<HomeScreenNavigation> by DefaultNavigationEventDelegate(){
+) : ViewModel(),
+    NavigationEventDelegate<HomeScreenNavigation> by DefaultNavigationEventDelegate() {
 
     init {
         connectivityObserver.observe().onEach { connectivityStatus ->
@@ -83,10 +84,6 @@ class HomeViewModel @Inject constructor(
                 emitNavigation(HomeScreenNavigation.NavigateToSettings)
             }
 
-            HomeScreenClickIntents.OnTcpClick -> {
-                emitNavigation(HomeScreenNavigation.NavigateToTcp)
-            }
-
             HomeScreenClickIntents.OnSearchClick -> {
 
             }
@@ -96,12 +93,10 @@ class HomeViewModel @Inject constructor(
             }
 
             HomeScreenClickIntents.NavIconClicked -> {
+                log("click")
                 openDrawer()
             }
 
-            HomeScreenClickIntents.ListItemClicked -> {
-                emitNavigation(HomeScreenNavigation.NavigateToGroup)
-            }
         }
     }
 
@@ -112,4 +107,4 @@ data class HomeScreenState(
     //connectivity
     val connectivityStatus: UiText = UiText.StringResource(R.string.connectivity_unavailable),
 
-)
+    )

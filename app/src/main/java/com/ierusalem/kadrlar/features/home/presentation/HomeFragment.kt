@@ -14,7 +14,12 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.fragment.findNavController
+import com.ierusalem.kadrlar.R
+import com.ierusalem.kadrlar.core.ui.components.KadrlarDrawer
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
+import com.ierusalem.kadrlar.core.utils.executeWithLifecycle
+import com.ierusalem.kadrlar.features.home.domain.HomeScreenNavigation
 import com.ierusalem.kadrlar.features.home.domain.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -60,12 +65,35 @@ class HomeFragment : Fragment() {
                 }
 
                 KadrlarTheme {
-                    HomeUiScreen(
-                        uiState = uiState,
-                        eventHandler = viewModel::handleClickIntents
+                    KadrlarDrawer(
+                        drawerState = drawerState,
+                        content = {
+                            HomeUiScreen(
+                                uiState = uiState,
+                                eventHandler = viewModel::handleClickIntents
+                            )
+                        },
+                        onDrawerItemClick = viewModel::handleClickIntents
                     )
                 }
             }
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.screenNavigation.executeWithLifecycle(
+            lifecycle = viewLifecycleOwner.lifecycle,
+            action = ::executeNavigation
+        )
+    }
+
+    private fun executeNavigation(navigation: HomeScreenNavigation) {
+        when (navigation) {
+            HomeScreenNavigation.NavigateToSettings -> {
+                findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            }
+        }
+    }
+
 }

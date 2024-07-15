@@ -14,7 +14,9 @@ import com.ierusalem.androchat.features.settings.presentation.SettingsScreenNavi
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.core.utils.executeWithLifecycle
 import com.ierusalem.kadrlar.features.settings.domain.SettingsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment:Fragment() {
 
     private val viewModel: SettingsViewModel by viewModels()
