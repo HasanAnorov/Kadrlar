@@ -84,6 +84,16 @@ dependencies {
     //glide
     implementation (libs.landscapist.glide)
 
+    //chucker
+    debugImplementation (libs.library)
+    releaseImplementation (libs.library.no.op)
+
+    //retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.okhttp)
+    implementation (libs.logging.interceptor)
+
     //icons extended version
     implementation(libs.androidx.compose.material.iconsExtended)
 

@@ -1,31 +1,45 @@
 package com.ierusalem.kadrlar.features.login.domain
 
+import android.util.Log
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
-import com.ierusalem.kadrlar.core.utils.FieldValidator
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
+import com.ierusalem.kadrlar.core.utils.FieldValidator
+import com.ierusalem.kadrlar.core.utils.log
+import com.ierusalem.kadrlar.features.login.data.models.UserLoginRequest
+import com.ierusalem.kadrlar.features.login.presentation.LoginFormEvents
+import com.ierusalem.kadrlar.features.login.presentation.LoginNavigation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val validator: FieldValidator,
-    private val dataStorePreferenceRepository: DataStorePreferenceRepository
+    private val dataStorePreferenceRepository: DataStorePreferenceRepository,
+    private val repository: LoginRepository
 ) : ViewModel(), DefaultLifecycleObserver,
     NavigationEventDelegate<LoginNavigation> by DefaultNavigationEventDelegate() {
 
     private val _state: MutableStateFlow<LoginScreenState> = MutableStateFlow(LoginScreenState())
     val state = _state.asStateFlow()
 
-    fun handleEvents(event: LoginFormEvents){
-        when(event){
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        Log.d("ahi3646", " coroutineExceptionHandler : error - $exception ")
+        emitNavigation(LoginNavigation.InvalidResponse)
+    }
+
+    fun handleEvents(event: LoginFormEvents) {
+        when (event) {
             LoginFormEvents.Login -> loginUser()
             is LoginFormEvents.UsernameChanged -> {
                 _state.update {
@@ -34,6 +48,7 @@ class LoginViewModel @Inject constructor(
                     )
                 }
             }
+
             is LoginFormEvents.PasswordChanged -> {
                 _state.update {
                     it.copy(
@@ -41,6 +56,7 @@ class LoginViewModel @Inject constructor(
                     )
                 }
             }
+
             LoginFormEvents.PasswordVisibilityChanged -> {
                 _state.update {
                     it.copy(
@@ -77,7 +93,24 @@ class LoginViewModel @Inject constructor(
                 passwordError = null,
             )
         }
-        emitNavigation(LoginNavigation.ToHome)
+        viewModelScope.launch(handler) {
+            val userLoginRequest = UserLoginRequest(
+                username = state.value.username,
+                password = state.value.password
+            )
+            repository.loginUser(userLoginRequest).let {
+                if (it.isSuccessful) {
+                    val userLoginResponse = it.body()!!
+                    log("loginUser: \naccess token ${userLoginResponse.access} \nrefresh token ${userLoginResponse.refresh}")
+                    dataStorePreferenceRepository.saveAccessToken(userLoginResponse.access)
+                    dataStorePreferenceRepository.saveRefreshToken(userLoginResponse.refresh)
+
+                    emitNavigation(LoginNavigation.ToHome)
+                } else {
+                    emitNavigation(LoginNavigation.InvalidResponse)
+                }
+            }
+        }
     }
 
 }

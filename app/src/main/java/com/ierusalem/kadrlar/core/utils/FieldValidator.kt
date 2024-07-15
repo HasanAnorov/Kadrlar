@@ -22,11 +22,11 @@ class FieldValidator {
     }
 
     fun validatePassword(password: String): ValidationResult {
-        val containsLetterAndDigits = password.any {
-            it.isDigit()
-        } && password.any {
-            it.isLetter()
-        }
+//        val containsLetterAndDigits = password.any {
+//            it.isDigit()
+//        } && password.any {
+//            it.isLetter()
+//        }
         return when {
             password.isBlank() -> ValidationResult(
                 successful = false,
@@ -38,29 +38,17 @@ class FieldValidator {
                 errorMessage = "Login should be than 3 characters!"
             )
 
-            !containsLetterAndDigits -> {
-                ValidationResult(
-                    successful = false,
-                    errorMessage = "Password must be include digits and letters"
-                )
-            }
+//            !containsLetterAndDigits -> {
+//                ValidationResult(
+//                    successful = false,
+//                    errorMessage = "Password must be include digits and letters"
+//                )
+//            }
 
             else -> ValidationResult(
                 successful = true,
             )
         }
-    }
-
-    fun validateRepeatedPassword(password: String, repeatedPassword: String): ValidationResult {
-        if(password != repeatedPassword){
-            return ValidationResult(
-                successful = false,
-                errorMessage = "The passwords don't match"
-            )
-        }
-        return ValidationResult(
-            successful = true
-        )
     }
 
 }

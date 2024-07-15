@@ -4,10 +4,4 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class KadrlarApp:Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-    }
-
-}
+class KadrlarApp:Application()

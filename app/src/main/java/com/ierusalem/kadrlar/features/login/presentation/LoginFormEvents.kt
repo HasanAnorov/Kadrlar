@@ -1,4 +1,4 @@
-package com.ierusalem.kadrlar.features.login.domain
+package com.ierusalem.kadrlar.features.login.presentation
 
 
 sealed class LoginFormEvents {
