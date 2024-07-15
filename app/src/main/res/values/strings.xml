@@ -30,9 +30,9 @@
 
     <!-- App Bar status strings-->
     <string name="connected">AndroChat</string>
-    <string name="connectivity_loosing">Потеря соединения</string>
-    <string name="connectivity_lost">Потерянное соединение</string>
-    <string name="connectivity_unavailable">Недоступен</string>
+    <string name="connectivity_loosing">Losing connection</string>
+    <string name="connectivity_lost">Connection lost</string>
+    <string name="connectivity_unavailable">Not available</string>
     <string name="something_went_wrong">Something went wrong, please try again later!</string>
 
 </resources>
