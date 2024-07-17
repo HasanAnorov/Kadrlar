@@ -28,7 +28,11 @@ class SettingsViewModel @Inject constructor(
     private val _state: MutableStateFlow<SettingsState> = MutableStateFlow(SettingsState())
     val state = _state.asStateFlow()
 
-    fun initLanguageAndTheme() {
+    init {
+        initLanguageAndTheme()
+    }
+
+    private fun initLanguageAndTheme() {
         viewModelScope.launch {
             val isSystemInDarkMode = dataStorePreferenceRepository.getTheme.first()
             val language = getLanguageFromCode(dataStorePreferenceRepository.getLanguage.first())

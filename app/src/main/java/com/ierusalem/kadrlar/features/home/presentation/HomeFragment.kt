@@ -39,8 +39,7 @@ class HomeFragment : Fragment() {
 
                 val uiState by viewModel.state.collectAsStateWithLifecycle()
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-                val drawerOpen by viewModel.drawerShouldBeOpened
-                    .collectAsStateWithLifecycle()
+                val drawerOpen by viewModel.drawerShouldBeOpened.collectAsStateWithLifecycle()
                 val scope = rememberCoroutineScope()
 
                 if (drawerOpen) {
