@@ -29,7 +29,7 @@
     <string name="save">Save</string>
 
     <!-- App Bar status strings-->
-    <string name="connected">AndroChat</string>
+    <string name="connected">Hiring Management</string>
     <string name="connectivity_loosing">Losing connection</string>
     <string name="connectivity_lost">Connection lost</string>
     <string name="connectivity_unavailable">Not available</string>

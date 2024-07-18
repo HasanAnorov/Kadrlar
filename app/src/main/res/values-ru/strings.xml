@@ -29,7 +29,7 @@
     <string name="save">Сохранять</string>
 
     <!-- App Bar status strings-->
-    <string name="connected">AndroChat</string>
+    <string name="connected">Управление наймом</string>
     <string name="connectivity_loosing">Потеря соединения</string>
     <string name="connectivity_lost">Потерянное соединение</string>
     <string name="connectivity_unavailable">Недоступен</string>
