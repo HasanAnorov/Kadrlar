@@ -1,5 +1,6 @@
 package com.ierusalem.androchat.core.ui.navigation
 
+import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 

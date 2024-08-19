@@ -1,4 +1,4 @@
-package com.ierusalem.androchat.core.ui.navigation
+package com.ierusalem.kadrlar.core.ui.navigation
 
 import kotlinx.coroutines.flow.Flow
 

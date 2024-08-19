@@ -8,7 +8,6 @@ import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
-import com.ierusalem.kadrlar.core.utils.log
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -39,7 +38,6 @@ class KadrlarApp : Application() {
                         applicationContext.getSystemService(UiModeManager::class.java)
                             .setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
                     } else {
-                        log("setting dark mode")
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
                 } else {
@@ -47,7 +45,6 @@ class KadrlarApp : Application() {
                         applicationContext.getSystemService(UiModeManager::class.java)
                             .setApplicationNightMode(UiModeManager.MODE_NIGHT_NO)
                     } else {
-                        log("setting light mode")
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     }
                 }

@@ -1,5 +1,6 @@
 package com.ierusalem.kadrlar.core.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -40,19 +42,20 @@ import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.features.settings.data.PreviewSettings
 
 @Composable
-fun LanguageDialog(
+fun OptionsDialog(
     modifier: Modifier = Modifier,
-    languages: List<AppLanguage>,
+    @StringRes label:Int,
+    languages: List<Int>,
     onDismissDialog: () -> Unit,
-    selectedLanguage: AppLanguage,
-    onLanguageSelected: (language: AppLanguage) -> Unit
+    selectedOption: Int,
+    onOptionSelected: (option: Int) -> Unit
 ) {
 
     val options by rememberSaveable {
         mutableStateOf(languages)
     }
     var tempSelectedLanguage by rememberSaveable {
-        mutableStateOf(selectedLanguage)
+        mutableIntStateOf(selectedOption)
     }
 
     Dialog(
@@ -82,13 +85,13 @@ fun LanguageDialog(
                 Column(
                     modifier = Modifier.padding(vertical = 16.dp)
                 ) {
-                    options.forEach { language ->
-                        SelectionItem(
-                            language = language,
+                    options.forEach { option ->
+                        SelectionItemForOptions(
+                            option = option,
                             onClick = {
-                                tempSelectedLanguage = language
+                                tempSelectedLanguage = option
                             },
-                            isSelected = language == tempSelectedLanguage
+                            isSelected = option == tempSelectedLanguage
                         )
                     }
                 }
@@ -125,7 +128,7 @@ fun LanguageDialog(
                             .clip(RoundedCornerShape(12.dp))
                             .background(color = MaterialTheme.colorScheme.primary)
                             .clickable {
-                                onLanguageSelected(tempSelectedLanguage)
+                                onOptionSelected(tempSelectedLanguage)
                                 onDismissDialog()
                             },
                         content = {
@@ -150,9 +153,9 @@ fun LanguageDialog(
 }
 
 @Composable
-private fun SelectionItem(
+private fun SelectionItemForOptions(
     modifier: Modifier = Modifier,
-    language: AppLanguage,
+    option: Int,
     onClick: () -> Unit,
     isSelected: Boolean,
 ) {
@@ -179,7 +182,7 @@ private fun SelectionItem(
                 modifier = Modifier
                     .weight(1F)
                     .padding(vertical = 18.dp),
-                text = language.languageRes.asString(),
+                text = stringResource(id = option),
                 fontSize = 14.sp,
                 style = MaterialTheme.typography.labelSmall
             )

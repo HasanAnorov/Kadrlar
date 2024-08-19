@@ -6,7 +6,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
-import com.ierusalem.androchat.core.ui.navigation.NavigationEventDelegate
+import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
 import com.ierusalem.kadrlar.core.utils.FieldValidator

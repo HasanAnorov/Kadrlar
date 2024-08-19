@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.view.ViewCompat
-import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.databinding.ActivityNavBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,12 +18,10 @@ class NavActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { _, insets -> insets }
         setContentView(
-            ComposeView(this).apply {
+            ComposeView(this@NavActivity).apply {
                 consumeWindowInsets = false
                 setContent {
-                    KadrlarTheme {
-                        AndroidViewBinding(ActivityNavBinding::inflate)
-                    }
+                    AndroidViewBinding(ActivityNavBinding::inflate)
                 }
             }
         )

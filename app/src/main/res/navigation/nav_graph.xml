@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/supportFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -42,12 +42,23 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_supportFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:destination="@id/supportFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ierusalem.kadrlar.features.profile.presentation.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.ierusalem.kadrlar.features.chat.presentation.SupportFragment"
+        android:label="SupportFragment" />
 
 
 </navigation>

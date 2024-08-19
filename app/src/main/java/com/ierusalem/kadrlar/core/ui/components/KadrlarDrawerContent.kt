@@ -61,6 +61,11 @@ fun KadrlarDrawerContent(
             image = painterResource(id = R.drawable.settings_sharp),
             onChatClicked = { onDrawerItemClick(HomeScreenClickIntents.DrawerSettingClick) }
         )
+        ChatItem(
+            text = stringResource(id = R.string.support),
+            image = painterResource(id = R.drawable.info),
+            onChatClicked = { onDrawerItemClick(HomeScreenClickIntents.DrawerSupportClick) }
+        )
     }
 }
 

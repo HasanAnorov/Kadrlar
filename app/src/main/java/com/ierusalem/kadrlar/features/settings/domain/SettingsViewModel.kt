@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
-import com.ierusalem.androchat.core.ui.navigation.NavigationEventDelegate
+import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
 import com.ierusalem.androchat.features.settings.presentation.SettingsScreenNavigation
 import com.ierusalem.kadrlar.core.app.AppLanguage

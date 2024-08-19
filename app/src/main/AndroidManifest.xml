@@ -21,6 +21,7 @@
             android:name=".core.NavActivity"
             android:configChanges="uiMode|locale|layoutDirection|screenSize|screenLayout|orientation"
             android:exported="true"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/Theme.Kadrlar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

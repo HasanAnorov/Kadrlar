@@ -1,6 +1,6 @@
 package com.ierusalem.kadrlar.core.ui.components
 
-import androidx.compose.foundation.BorderStroke
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,11 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,35 +23,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.commandiron.wheel_picker_compose.WheelDatePicker
 import com.ierusalem.kadrlar.R
-import com.ierusalem.kadrlar.core.app.AppLanguage
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.settings.data.PreviewSettings
 
 @Composable
-fun LanguageDialog(
+fun DatePickerDialog(
     modifier: Modifier = Modifier,
-    languages: List<AppLanguage>,
+    @StringRes label: Int? = null,
     onDismissDialog: () -> Unit,
-    selectedLanguage: AppLanguage,
-    onLanguageSelected: (language: AppLanguage) -> Unit
+    onSnappedDate: (String) -> Unit
 ) {
-
-    val options by rememberSaveable {
-        mutableStateOf(languages)
+    var date by rememberSaveable {
+        mutableStateOf("23 July 2024")
     }
-    var tempSelectedLanguage by rememberSaveable {
-        mutableStateOf(selectedLanguage)
-    }
-
     Dialog(
         onDismissRequest = { onDismissDialog() },
         properties = DialogProperties(
@@ -71,27 +59,22 @@ fun LanguageDialog(
                         shape = RoundedCornerShape(8.dp)
                     )
             ) {
-                Text(
-                    modifier = Modifier
-                        .padding(top = 16.dp, start = 16.dp, end = 16.dp)
-                        .fillMaxWidth(),
-                    text = stringResource(R.string.select_app_language),
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-                Column(
-                    modifier = Modifier.padding(vertical = 16.dp)
-                ) {
-                    options.forEach { language ->
-                        SelectionItem(
-                            language = language,
-                            onClick = {
-                                tempSelectedLanguage = language
-                            },
-                            isSelected = language == tempSelectedLanguage
-                        )
-                    }
+                label?.let {
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                            .fillMaxWidth(),
+                        text = stringResource(label),
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
+                WheelDatePicker(
+                    modifier = Modifier.fillMaxWidth(),
+                    onSnappedDate = {snappedDate ->
+                        date = snappedDate.toString()
+                    }
+                )
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Box(
                         modifier = Modifier
@@ -125,7 +108,7 @@ fun LanguageDialog(
                             .clip(RoundedCornerShape(12.dp))
                             .background(color = MaterialTheme.colorScheme.primary)
                             .clickable {
-                                onLanguageSelected(tempSelectedLanguage)
+                                onSnappedDate(date)
                                 onDismissDialog()
                             },
                         content = {
@@ -149,62 +132,17 @@ fun LanguageDialog(
     )
 }
 
-@Composable
-private fun SelectionItem(
-    modifier: Modifier = Modifier,
-    language: AppLanguage,
-    onClick: () -> Unit,
-    isSelected: Boolean,
-) {
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 4.dp)
-            .padding(horizontal = 16.dp),
-        shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(0.2F)),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
-        ),
-        onClick = {
-            onClick()
-        }
-    ) {
-        Row(
-            modifier = Modifier.padding(start = 16.dp),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                modifier = Modifier
-                    .weight(1F)
-                    .padding(vertical = 18.dp),
-                text = language.languageRes.asString(),
-                fontSize = 14.sp,
-                style = MaterialTheme.typography.labelSmall
-            )
-            if (isSelected) {
-                IconToggleButton(checked = true, onCheckedChange = {}) {
-                    Icon(
-                        painter = painterResource(R.drawable.subtract),
-                        contentDescription = null,
-                    )
-                }
-            }
-        }
-    }
-}
-
 @Preview
 @Composable
 private fun PreviewLight() {
     KadrlarTheme {
-        LanguageDialog(
-            languages = PreviewSettings.languages,
-            onDismissDialog = {},
-            onLanguageSelected = {},
-            selectedLanguage = AppLanguage.Russian
-        )
+        Surface {
+            DatePickerDialog(
+                label = R.string.log_in_to_continue,
+                onDismissDialog = {},
+                onSnappedDate = {}
+            )
+        }
     }
 }
 
@@ -212,11 +150,12 @@ private fun PreviewLight() {
 @Composable
 private fun PreviewDark() {
     KadrlarTheme(isDarkTheme = true) {
-        LanguageDialog(
-            languages = PreviewSettings.languages,
-            onDismissDialog = {},
-            onLanguageSelected = {},
-            selectedLanguage = AppLanguage.Russian
-        )
+        Surface {
+            DatePickerDialog(
+                label = R.string.log_in_to_continue,
+                onDismissDialog = {},
+                onSnappedDate = {}
+            )
+        }
     }
 }

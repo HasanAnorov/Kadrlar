@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
-import com.ierusalem.androchat.core.ui.navigation.NavigationEventDelegate
+import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
 import com.ierusalem.androchat.core.utils.UiText
 import com.ierusalem.kadrlar.R
@@ -80,8 +80,89 @@ class HomeViewModel @Inject constructor(
 
     fun handleClickIntents(intent: HomeScreenClickIntents) {
         when (intent) {
+
+            is HomeScreenClickIntents.OnPassportNumberChanged -> {
+                _state.update {
+                    it.copy(
+                        passportNumber = intent.passportNumber
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPassportIssuedDateChanged -> {
+                _state.update {
+                    it.copy(
+                        passportIssuedDate = intent.passportIssuedDate
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPassportExpirationDateChanged -> {
+                _state.update {
+                    it.copy(
+                        passportExpirationDate = intent.passportExpirationDate
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnDateChange -> {
+                _state.update {
+                    it.copy(
+                        dateOfBirthday = intent.date
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPassportSeriesChanged -> {
+                _state.update {
+                    it.copy(
+                        passportSeries = intent.passportSeries
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnFirstNameChanged -> {
+                _state.update {
+                    it.copy(
+                        firstName = intent.firstName
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnLastNameChanged -> {
+                _state.update {
+                    it.copy(
+                        lastName = intent.lastName
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPatronymicNameChanged -> {
+                _state.update {
+                    it.copy(
+                        patronymicName = intent.patronymicName
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPinflChanged -> {
+                _state.update {
+                    it.copy(
+                        pinfl = intent.pinfl
+                    )
+                }
+            }
+
+            HomeScreenClickIntents.SelectFile -> {
+                emitNavigation(HomeScreenNavigation.SelectFile)
+            }
+
             HomeScreenClickIntents.DrawerSettingClick -> {
                 emitNavigation(HomeScreenNavigation.NavigateToSettings)
+            }
+
+            HomeScreenClickIntents.DrawerSupportClick -> {
+                emitNavigation(HomeScreenNavigation.NavigateToSupport)
             }
 
             HomeScreenClickIntents.OnSearchClick -> {
@@ -107,4 +188,28 @@ data class HomeScreenState(
     //connectivity
     val connectivityStatus: UiText = UiText.StringResource(R.string.connectivity_unavailable),
 
-    )
+    //home content
+    val firstName:String = "",
+    val lastName:String = "",
+    val patronymicName: String = "",
+
+    val pinfl: String = "",
+
+    val passportSeries: String = "",
+    val passportNumber:String = "",
+
+    val passportIssuedDate:String = "2000-01-01",
+    val passportExpirationDate:String = "2000-01-01",
+
+    val diplomas: List<Diploma> = listOf(
+        Diploma(emptyList())
+    ),
+
+    val dateOfBirthday:String = "2000-01-01"
+
+)
+
+@Immutable
+data class Diploma(
+    val files:List<String>
+)

@@ -94,6 +94,8 @@ dependencies {
     implementation (libs.okhttp)
     implementation (libs.logging.interceptor)
 
+    implementation (libs.wheelpickercompose)
+
     //icons extended version
     implementation(libs.androidx.compose.material.iconsExtended)
 

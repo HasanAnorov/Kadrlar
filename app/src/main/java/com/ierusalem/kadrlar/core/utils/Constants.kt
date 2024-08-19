@@ -1,12 +1,16 @@
 package com.ierusalem.kadrlar.core.utils
 
 import com.ierusalem.kadrlar.core.app.AppLanguage
+import java.io.File
 
-object Constants{
+object Constants {
 
     const val DATA_STORE_NAME = "AppDataStore"
 
-    const val BASE_URL =  "https://kadr.samduuf.uz/"
+    const val FOLDER_NAME_FOR_RESOURCES = "Kadrlar"
+    private const val FILE_NAME_FOR_RESOURCES = "_kadrlar"
+
+    const val BASE_URL = "https://kadr.samduuf.uz/"
 
     const val PREFERENCE_LANGUAGE = "device_language"
     const val PREFERENCE_THEME = "device_theme"
@@ -38,5 +42,28 @@ object Constants{
         }
     }
 
+    fun generateUniqueFileName(directory: String, baseFileName: String, extension: String): String {
+        var count = 0
+        var newFileName: String
+        val baseNameWithExtension = "$baseFileName.$extension"
+
+        do {
+            count++
+            newFileName = if (count == 1) {
+                "$directory/$baseNameWithExtension"
+            } else {
+                "$directory/$baseFileName($count).$extension"
+            }
+        } while (File(newFileName).exists())
+
+        return newFileName
+    }
+
+    fun generateAppSpecificFileName(fileName: String): String {
+        val fileNameWithoutExt = fileName.getFileNameWithoutExtension()
+        val fileExtension = fileName.getExtensionFromFilename()
+        val uniqueFileName = "$fileNameWithoutExt$FILE_NAME_FOR_RESOURCES.$fileExtension"
+        return uniqueFileName
+    }
 
 }
