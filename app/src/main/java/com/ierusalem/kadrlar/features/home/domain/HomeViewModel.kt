@@ -81,6 +81,20 @@ class HomeViewModel @Inject constructor(
     fun handleClickIntents(intent: HomeScreenClickIntents) {
         when (intent) {
 
+            is HomeScreenClickIntents.OnFilesAdded -> {
+                log("file name - ${intent.fileName}")
+                val diplomas = _state.value.diplomas.apply {
+                    this.toMutableList().first().apply {
+                        this.files.toMutableList().add(intent.fileName)
+                    }
+                }
+                _state.update {
+                    it.copy(
+                        diplomas = diplomas
+                    )
+                }
+            }
+
             is HomeScreenClickIntents.OnPassportNumberChanged -> {
                 _state.update {
                     it.copy(
@@ -174,7 +188,6 @@ class HomeViewModel @Inject constructor(
             }
 
             HomeScreenClickIntents.NavIconClicked -> {
-                log("click")
                 openDrawer()
             }
 
@@ -201,15 +214,40 @@ data class HomeScreenState(
     val passportIssuedDate:String = "2000-01-01",
     val passportExpirationDate:String = "2000-01-01",
 
+    //passport pdf
     val diplomas: List<Diploma> = listOf(
-        Diploma(emptyList())
+        Diploma(
+            tag =  "",
+            files = listOf(
+                "Kadrlar.pdf",
+                "Kadrlar.pdf",
+                "Kadrlar.pdf",
+                "Kadrlar.pdf",
+                "Kadrlar.pdf",
+                "Kadrlar.pdf"
+            )
+        )
     ),
 
-    val dateOfBirthday:String = "2000-01-01"
+    //profile
+    val nationality:String = "Uzbek",
+    val citizenship:String = "Uzbek",
+    val partisanship:String = "Uzbek",
+
+    val dateOfBirthday:String = "2000-01-01",
+
+    val gender:String = "male",
+    val phoneNumber:String = "+998",
 
 )
 
 @Immutable
 data class Diploma(
-    val files:List<String>
+    val tag:String = "default",
+    val files:List<String> = emptyList()
+)
+
+data class FileModel(
+    val fileName:String,
+    val filePath:String
 )

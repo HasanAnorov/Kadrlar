@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Auth strings-->
+    <string name="log_in">Kirish</string>
+    <string name="have_an_account">Hisobingiz bormi?</string>
+    <string name="register">Ro‘yxatdan o‘tish</string>
+    <string name="password_confirmation">Parolni tasdiqlash</string>
+    <string name="password">Parol</string>
+    <string name="username">Foydalanuvchi nomi</string>
+    <string name="register_to_continue">Foydalanuvchi nomi</string>
+    <string name="welcome">Xush kelibsiz</string>
+    <string name="don_t_have_an_account">Hisobingiz yo‘qmi?</string>
+    <string name="login">Kirish</string>
+    <string name="log_in_to_continue">Davom etish uchun tizimga kiring</string>
+    <string name="welcome_back">Xush kelibsiz</string>
+
+    <!-- Settings strings-->
+    <string name="settings">Sozlamalar</string>
+    <string name="english">Ingliz tili</string>
+    <string name="russian">Rus tili</string>
+    <string name="language">Til</string>
+    <string name="app_theme">Ilova mavzusi</string>
+    <string name="general">Umumiy</string>
+    <string name="logout">Chiqish</string>
+    <string name="invite_a_friend">Do‘stingizni taklif qiling</string>
+    <string name="select_app_language">Ilova tilini tanlang</string>
+    <string name="cancel">Bekor qilish</string>
+    <string name="save">Saqlash</string>
+
+    <!-- App Bar status strings-->
+    <string name="connected">Ishga olish boshqaruvi</string>
+    <string name="connectivity_loosing">Ulanish uzildi</string>
+    <string name="connectivity_lost">Ulanish uzildi</string>
+    <string name="connectivity_unavailable">Mavjud emas</string>
+    <string name="something_went_wrong">Nimadir xato ketdi, keyinroq qayta urinib ko‘ring!</string>
+    <string name="firstname">Ism</string>
+    <string name="firstname_description">Ismingizni kiriting</string>
+    <string name="lastname_description">Familiyangizni kiriting</string>
+    <string name="lastname">Familiya</string>
+    <string name="patronymic_description">Ota ismingizni kiriting</string>
+    <string name="patronymic">Otasining ismi</string>
+    <string name="pinfl_description">PINFL-ni kiriting</string>
+    <string name="pinfl">PINFL</string>
+    <string name="passport_series_description">Pasport seriyangizni kiriting</string>
+    <string name="passport_series">Pasport seriyasi</string>
+    <string name="passport_number_description">Pasport raqamingizni kiriting</string>
+    <string name="passport_number">Pasport raqami</string>
+    <string name="passport_issued_date_description">Pasport berilgan ma\'lumotlarni kiriting</string>
+    <string name="passport_issued_date">Pasport berilgan sana</string>
+    <string name="passport_expiration_date_description">Pasportning amal qilish muddatini kiriting</string>
+    <string name="passport_expiration_date">Pasportning amal qilish muddati</string>
+    <string name="passport_copy_description">Pasport nusxasi versiyasini kiriting</string>
+    <string name="birthday_description">Tug‘ilgan kuningizni kiriting</string>
+    <string name="please_install_a_file_manager">Iltimos, fayl boshqaruvchisini o\'rnating!</string>
+    <string name="support">Yordam</string>
+    <string name="author_me">men</string>
+    <string name="jumpBottom">Pastga o‘tish</string>
+    <string name="not_available">Funksionallik hozirda mavjud emas</string>
+    <string name="not_available_subtitle">Ichimlik oling va keyinroq tekshiring!</string>
+    <string name="emoji_selector_desc">Emoji selektori</string>
+    <string name="emoji_selector_bt_desc">Emoji selektorini ko‘rsatish</string>
+    <string name="dm_desc">To‘g‘ridan-to‘g‘ri xabar</string>
+    <string name="attach_photo_desc">Rasm biriktirish</string>
+    <string name="map_selector_desc">Joylashuv selektori</string>
+    <string name="videochat_desc">Video suhbatni boshlash</string>
+    <string name="send">Yuborish</string>
+    <string name="textfield_desc">Matn kiritish</string>
+    <string name="textfield_hint">Xabar yuborish</string>
+    <string name="emojis_label">Emojilar</string>
+    <string name="stickers_label">Stikerlar</string>
+    <string name="now">8:30 PM</string>
+    <string name="uzbek">O‘zbek</string>
+
+</resources>

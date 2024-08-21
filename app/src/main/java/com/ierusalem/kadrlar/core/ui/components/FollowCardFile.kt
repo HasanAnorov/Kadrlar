@@ -52,7 +52,7 @@ fun FollowCardFile(
 
 @Composable
 fun FilesContainer(modifier: Modifier = Modifier, files: List<String>) {
-    LazyColumn(modifier = modifier.height(200.dp)) {
+    LazyColumn(modifier = modifier.height(100.dp)) {
         itemsIndexed(files) { index, item ->
             FileItem(fileName = item)
             if (index != files.lastIndex) {

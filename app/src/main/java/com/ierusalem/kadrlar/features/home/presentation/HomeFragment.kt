@@ -31,6 +31,7 @@ import com.ierusalem.kadrlar.core.utils.executeWithLifecycle
 import com.ierusalem.kadrlar.core.utils.getFileNameFromUri
 import com.ierusalem.kadrlar.core.utils.getFileNameWithoutExtension
 import com.ierusalem.kadrlar.core.utils.log
+import com.ierusalem.kadrlar.features.home.domain.HomeScreenClickIntents
 import com.ierusalem.kadrlar.features.home.domain.HomeScreenNavigation
 import com.ierusalem.kadrlar.features.home.domain.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,6 +84,7 @@ class HomeFragment : Fragment() {
                 inputStream?.copyTo(fileOutputStream)
                 fileOutputStream.close()
 
+                viewModel.handleClickIntents(HomeScreenClickIntents.OnFilesAdded(file.name))
             }
         }
     }

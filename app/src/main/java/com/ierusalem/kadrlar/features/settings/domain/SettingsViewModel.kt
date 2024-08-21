@@ -11,6 +11,7 @@ import com.ierusalem.kadrlar.core.app.AppLanguage
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
 import com.ierusalem.kadrlar.core.utils.Constants.getLanguageCode
 import com.ierusalem.kadrlar.core.utils.Constants.getLanguageFromCode
+import com.ierusalem.kadrlar.core.utils.log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,6 +37,7 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             val isSystemInDarkMode = dataStorePreferenceRepository.getTheme.first()
             val language = getLanguageFromCode(dataStorePreferenceRepository.getLanguage.first())
+            log("language - $language")
             _state.update { settingsState ->
                 settingsState.copy(
                     selectedLanguage = language,
@@ -46,6 +48,7 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun changeLanguage(language: AppLanguage) {
+        log("language1 - $language")
         viewModelScope.launch {
             dataStorePreferenceRepository.setLanguage(getLanguageCode(language))
             _state.update { settingsState ->
@@ -58,6 +61,11 @@ class SettingsViewModel @Inject constructor(
 
     fun handleEvents(event: SettingsScreenEvents) {
         when (event) {
+
+            SettingsScreenEvents.NavIconClick -> {
+                emitNavigation(SettingsScreenNavigation.NavIconClick)
+            }
+
             SettingsScreenEvents.OnThemeChange -> {
                 viewModelScope.launch {
                     dataStorePreferenceRepository.setTheme(!state.value.appTheme)
@@ -67,9 +75,6 @@ class SettingsViewModel @Inject constructor(
                         )
                     }
                 }
-            }
-            SettingsScreenEvents.NavIconClick -> {
-                emitNavigation(SettingsScreenNavigation.NavIconClick)
             }
 
             SettingsScreenEvents.LanguageCLick -> {
@@ -101,6 +106,7 @@ class SettingsViewModel @Inject constructor(
 data class SettingsState(
     val languageDialogVisibility: Boolean = false,
     val languagesList: List<AppLanguage> = listOf(
+        AppLanguage.Uzbek,
         AppLanguage.English,
         AppLanguage.Russian,
     ),

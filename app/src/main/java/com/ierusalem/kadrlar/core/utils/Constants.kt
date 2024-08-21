@@ -17,6 +17,7 @@ object Constants {
     const val PREFERENCE_ACCESS_TOKEN = "device_access_token"
     const val PREFERENCE_REFRESH_TOKEN = "device_refresh_token"
 
+    private const val UZBEK_LOCALE = "uz"
     private const val ENGLISH_LOCALE = "en"
     private const val RUSSIAN_LOCALE = "ru"
 
@@ -29,6 +30,7 @@ object Constants {
 
     fun getLanguageCode(language: AppLanguage): String {
         return when (language) {
+            AppLanguage.Uzbek -> UZBEK_LOCALE
             AppLanguage.English -> ENGLISH_LOCALE
             AppLanguage.Russian -> RUSSIAN_LOCALE
         }
@@ -38,6 +40,7 @@ object Constants {
         return when (languageCode) {
             ENGLISH_LOCALE -> AppLanguage.English
             RUSSIAN_LOCALE -> AppLanguage.Russian
+            UZBEK_LOCALE -> AppLanguage.Uzbek
             else -> AppLanguage.Russian
         }
     }

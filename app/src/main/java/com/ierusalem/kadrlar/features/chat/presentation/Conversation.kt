@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.exclude
@@ -29,7 +28,6 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -170,18 +168,6 @@ fun Messages(
                 val content = messages[index]
                 val isFirstMessageByAuthor = prevAuthor != content.author
                 val isLastMessageByAuthor = nextAuthor != content.author
-
-                // Hardcode day dividers for simplicity
-                if (index == messages.size - 1) {
-                    item {
-                        DayHeader("20 Aug")
-                    }
-                } else if (index == 2) {
-                    item {
-                        DayHeader("Today")
-                    }
-                }
-
                 item {
                     Message(
                         onAuthorClick = { name -> navigateToProfile(name) },
@@ -317,34 +303,6 @@ private fun AuthorNameTimestamp(msg: Message) {
 private val ChatBubbleShape = RoundedCornerShape(4.dp, 20.dp, 20.dp, 20.dp)
 
 @Composable
-fun DayHeader(dayString: String) {
-    Row(
-        modifier = Modifier
-            .padding(vertical = 8.dp, horizontal = 16.dp)
-            .height(16.dp)
-    ) {
-        DayHeaderLine()
-        Text(
-            text = dayString,
-            modifier = Modifier.padding(horizontal = 16.dp),
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        DayHeaderLine()
-    }
-}
-
-@Composable
-private fun RowScope.DayHeaderLine() {
-    HorizontalDivider(
-        modifier = Modifier
-            .weight(1f)
-            .align(Alignment.CenterVertically),
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
-    )
-}
-
-@Composable
 fun ChatItemBubble(
     message: Message,
     isUserMe: Boolean,
@@ -426,12 +384,6 @@ fun ConversationPreview() {
             uiState = exampleUiState,
         )
     }
-}
-
-@Preview
-@Composable
-fun DayHeaderPrev() {
-    DayHeader("Aug 6")
 }
 
 private val JumpToBottomThreshold = 56.dp

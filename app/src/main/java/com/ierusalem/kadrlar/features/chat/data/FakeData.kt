@@ -1,6 +1,5 @@
 package com.ierusalem.kadrlar.features.chat.data
 
-import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.features.chat.data.EMOJIS.EMOJI_CLOUDS
 import com.ierusalem.kadrlar.features.chat.data.EMOJIS.EMOJI_FLAMINGO
 import com.ierusalem.kadrlar.features.chat.data.EMOJIS.EMOJI_MELTING
@@ -18,8 +17,7 @@ private val initialMessages = listOf(
     Message(
         "me",
         "Thank you!$EMOJI_PINK_HEART",
-        "8:06 PM",
-        R.drawable.sticker
+        "8:06 PM"
     ),
     Message(
         "Taylor Brooks",
@@ -49,9 +47,7 @@ private val initialMessages = listOf(
 )
 
 val exampleUiState = ConversationUiState(
-    initialMessages = initialMessages,
-    channelName = "#composers",
-    channelMembers = 42
+    initialMessages = initialMessages
 )
 
 

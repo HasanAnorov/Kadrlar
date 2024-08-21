@@ -32,119 +32,119 @@ fun HomeContent(
                 .fillMaxSize()
                 .padding(vertical = 16.dp)
         ) {
-            item {
-                FollowCard(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp),
-                    label = R.string.firstname_description,
-                    placeHolder = R.string.firstname,
-                    onTextChanged = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnFirstNameChanged(it))
-                    },
-                    value = uiState.firstName
-                )
-            }
-            item {
-                FollowCard(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    label = R.string.lastname_description,
-                    placeHolder = R.string.lastname,
-                    onTextChanged = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnLastNameChanged(it))
-                    },
-                    value = uiState.lastName
-                )
-            }
-            item {
-                FollowCard(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    label = R.string.patronymic_description,
-                    placeHolder = R.string.patronymic,
-                    onTextChanged = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnPatronymicNameChanged(it))
-                    },
-                    value = uiState.patronymicName
-                )
-            }
-            item {
-                FollowCard(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    label = R.string.pinfl_description,
-                    placeHolder = R.string.pinfl,
-                    onTextChanged = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnPinflChanged(it))
-                    },
-                    value = uiState.pinfl,
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Next, // ** Done. Close the keyboard **
-                        keyboardType = KeyboardType.Number
-                    )
-                )
-            }
-            item {
-                FollowCard(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    label = R.string.passport_series_description,
-                    placeHolder = R.string.passport_series,
-                    onTextChanged = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnPassportSeriesChanged(it))
-                    },
-                    value = uiState.passportSeries,
-                )
-            }
-            item {
-                FollowCard(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    label = R.string.passport_number_description,
-                    placeHolder = R.string.passport_number,
-                    onTextChanged = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnPassportNumberChanged(it))
-                    },
-                    value = uiState.passportNumber,
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Next, // ** Done. Close the keyboard **
-                        keyboardType = KeyboardType.Number
-                    )
-                )
-            }
-
-            //passport issued date
-            item {
-                FollowCardDate(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    dateOfBirthday = uiState.passportIssuedDate,
-                    label = R.string.passport_issued_date_description,
-                    onDateChange = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnPassportIssuedDateChanged(it))
-                    }
-                )
-            }
-
-            //passport expiration date
-            item {
-                FollowCardDate(
-                    modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .padding(top = 16.dp),
-                    dateOfBirthday = uiState.passportExpirationDate,
-                    label = R.string.passport_expiration_date,
-                    onDateChange = {
-                        eventHandler.invoke(HomeScreenClickIntents.OnPassportExpirationDateChanged(it))
-                    }
-                )
-            }
+//            item {
+//                FollowCard(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp),
+//                    label = R.string.firstname_description,
+//                    placeHolder = R.string.firstname,
+//                    onTextChanged = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnFirstNameChanged(it))
+//                    },
+//                    value = uiState.firstName
+//                )
+//            }
+//            item {
+//                FollowCard(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    label = R.string.lastname_description,
+//                    placeHolder = R.string.lastname,
+//                    onTextChanged = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnLastNameChanged(it))
+//                    },
+//                    value = uiState.lastName
+//                )
+//            }
+//            item {
+//                FollowCard(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    label = R.string.patronymic_description,
+//                    placeHolder = R.string.patronymic,
+//                    onTextChanged = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnPatronymicNameChanged(it))
+//                    },
+//                    value = uiState.patronymicName
+//                )
+//            }
+//            item {
+//                FollowCard(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    label = R.string.pinfl_description,
+//                    placeHolder = R.string.pinfl,
+//                    onTextChanged = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnPinflChanged(it))
+//                    },
+//                    value = uiState.pinfl,
+//                    keyboardOptions = KeyboardOptions(
+//                        imeAction = ImeAction.Next, // ** Done. Close the keyboard **
+//                        keyboardType = KeyboardType.Number
+//                    )
+//                )
+//            }
+//            item {
+//                FollowCard(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    label = R.string.passport_series_description,
+//                    placeHolder = R.string.passport_series,
+//                    onTextChanged = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnPassportSeriesChanged(it))
+//                    },
+//                    value = uiState.passportSeries,
+//                )
+//            }
+//            item {
+//                FollowCard(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    label = R.string.passport_number_description,
+//                    placeHolder = R.string.passport_number,
+//                    onTextChanged = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnPassportNumberChanged(it))
+//                    },
+//                    value = uiState.passportNumber,
+//                    keyboardOptions = KeyboardOptions(
+//                        imeAction = ImeAction.Next, // ** Done. Close the keyboard **
+//                        keyboardType = KeyboardType.Number
+//                    )
+//                )
+//            }
+//
+//            //passport issued date
+//            item {
+//                FollowCardDate(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    dateOfBirthday = uiState.passportIssuedDate,
+//                    label = R.string.passport_issued_date_description,
+//                    onDateChange = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnPassportIssuedDateChanged(it))
+//                    }
+//                )
+//            }
+//
+//            //passport expiration date
+//            item {
+//                FollowCardDate(
+//                    modifier = Modifier
+//                        .padding(horizontal = 8.dp)
+//                        .padding(top = 16.dp),
+//                    dateOfBirthday = uiState.passportExpirationDate,
+//                    label = R.string.passport_expiration_date,
+//                    onDateChange = {
+//                        eventHandler.invoke(HomeScreenClickIntents.OnPassportExpirationDateChanged(it))
+//                    }
+//                )
+//            }
             items(uiState.diplomas){diploma ->
                 FollowCardFile(
                     modifier = Modifier
@@ -155,6 +155,48 @@ fun HomeContent(
                     },
                     label = R.string.passport_copy_description,
                     diploma = diploma
+                )
+            }
+
+            item {
+                FollowCard(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .padding(top = 16.dp),
+                    label = R.string.nationality_description,
+                    placeHolder = R.string.nationality,
+                    onTextChanged = {
+                        eventHandler.invoke(HomeScreenClickIntents.OnLastNameChanged(it))
+                    },
+                    value = uiState.lastName
+                )
+            }
+
+            item {
+                FollowCard(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .padding(top = 16.dp),
+                    label = R.string.citizenship_description,
+                    placeHolder = R.string.citizenship,
+                    onTextChanged = {
+                        eventHandler.invoke(HomeScreenClickIntents.OnLastNameChanged(it))
+                    },
+                    value = uiState.lastName
+                )
+            }
+
+            item {
+                FollowCard(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .padding(top = 16.dp),
+                    label = R.string.partisanship_description,
+                    placeHolder = R.string.partisanship,
+                    onTextChanged = {
+                        eventHandler.invoke(HomeScreenClickIntents.OnLastNameChanged(it))
+                    },
+                    value = uiState.lastName
                 )
             }
 
@@ -170,6 +212,39 @@ fun HomeContent(
                     }
                 )
             }
+
+            item {
+                FollowCard(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .padding(top = 16.dp),
+                    label = R.string.gender_description,
+                    placeHolder = R.string.gender,
+                    onTextChanged = {
+                        eventHandler.invoke(HomeScreenClickIntents.OnLastNameChanged(it))
+                    },
+                    value = uiState.lastName
+                )
+            }
+
+            item {
+                FollowCard(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .padding(top = 16.dp),
+                    label = R.string.phone_number_description,
+                    placeHolder = R.string.phone_number,
+                    onTextChanged = {
+                        eventHandler.invoke(HomeScreenClickIntents.OnPinflChanged(it))
+                    },
+                    value = uiState.pinfl,
+                    keyboardOptions = KeyboardOptions(
+                        imeAction = ImeAction.Next, // ** Done. Close the keyboard **
+                        keyboardType = KeyboardType.Number
+                    )
+                )
+            }
+
         }
     }
 }

@@ -7,6 +7,8 @@ sealed interface HomeScreenClickIntents {
     data object DrawerSettingClick: HomeScreenClickIntents
     data object OnSearchClick: HomeScreenClickIntents
 
+    data class OnFilesAdded(val fileName:String): HomeScreenClickIntents
+
     data object SelectFile: HomeScreenClickIntents
     data class OnFirstNameChanged(val firstName: String): HomeScreenClickIntents
     data class OnLastNameChanged(val lastName: String): HomeScreenClickIntents
