@@ -81,16 +81,61 @@ class HomeViewModel @Inject constructor(
     fun handleClickIntents(intent: HomeScreenClickIntents) {
         when (intent) {
 
-            is HomeScreenClickIntents.OnFilesAdded -> {
-                log("file name - ${intent.fileName}")
-                val diplomas = _state.value.diplomas.apply {
-                    this.toMutableList().first().apply {
-                        this.files.toMutableList().add(intent.fileName)
-                    }
-                }
+            is HomeScreenClickIntents.OnNationalityChanged -> {
                 _state.update {
                     it.copy(
-                        diplomas = diplomas
+                        nationality = intent.nationality
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnCitizenshipChanged -> {
+                _state.update {
+                    it.copy(
+                        citizenship = intent.citizenship
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPartisanshipChanged -> {
+                _state.update {
+                    it.copy(
+                        partisanship = intent.partisanship
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnGenderChanged -> {
+                _state.update {
+                    it.copy(
+                        gender = intent.gender
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnPhoneNumberChanged -> {
+                _state.update {
+                    it.copy(
+                        phoneNumber = intent.phoneNumber
+                    )
+                }
+            }
+
+            is HomeScreenClickIntents.OnFilesAdded -> {
+                log("file name - ${intent.fileName}")
+//                val diplomas = _state.value.diplomas.apply {
+//                    this.toMutableList().first().apply {
+//                        this.files.toMutableList().add(intent.fileName)
+//                    }
+//                }
+//                _state.update {
+//                    it.copy(
+//                        diplomas = diplomas
+//                    )
+//                }
+                _state.update {
+                    it.copy(
+                        passportPdf = intent.fileName
                     )
                 }
             }
@@ -119,7 +164,7 @@ class HomeViewModel @Inject constructor(
                 }
             }
 
-            is HomeScreenClickIntents.OnDateChange -> {
+            is HomeScreenClickIntents.OnBirthdayChanged -> {
                 _state.update {
                     it.copy(
                         dateOfBirthday = intent.date
@@ -215,19 +260,20 @@ data class HomeScreenState(
     val passportExpirationDate:String = "2000-01-01",
 
     //passport pdf
-    val diplomas: List<Diploma> = listOf(
-        Diploma(
-            tag =  "",
-            files = listOf(
-                "Kadrlar.pdf",
-                "Kadrlar.pdf",
-                "Kadrlar.pdf",
-                "Kadrlar.pdf",
-                "Kadrlar.pdf",
-                "Kadrlar.pdf"
-            )
-        )
-    ),
+//    val diplomas: List<Diploma> = listOf(
+//        Diploma(
+//            tag =  "",
+//            files = listOf(
+//                "Kadrlar.pdf",
+//                "Kadrlar.pdf",
+//                "Kadrlar.pdf",
+//                "Kadrlar.pdf",
+//                "Kadrlar.pdf",
+//                "Kadrlar.pdf"
+//            )
+//        )
+//    ),
+    val passportPdf: String? = null,
 
     //profile
     val nationality:String = "Uzbek",
@@ -236,18 +282,13 @@ data class HomeScreenState(
 
     val dateOfBirthday:String = "2000-01-01",
 
-    val gender:String = "male",
+    val gender:String = "Erkak",
     val phoneNumber:String = "+998",
 
 )
 
-@Immutable
-data class Diploma(
-    val tag:String = "default",
-    val files:List<String> = emptyList()
-)
-
-data class FileModel(
-    val fileName:String,
-    val filePath:String
-)
+//@Immutable
+//data class Diploma(
+//    val tag:String = "default",
+//    val files:List<String> = emptyList()
+//)

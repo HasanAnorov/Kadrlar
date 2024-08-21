@@ -22,27 +22,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.home.domain.Diploma
 
 @Composable
 fun CommonFileItem(
     modifier: Modifier = Modifier,
     onSelectFileClick: () -> Unit,
-    diploma: Diploma,
+//    diploma: Diploma,
+    fileName: String? = null,
     @StringRes label: Int? = null
 ) {
     Column {
         label?.let {
             Text(
-                modifier = Modifier.padding(start =  12.dp, top = 12.dp),
+                modifier = Modifier.padding(start = 12.dp, top = 12.dp),
                 text = stringResource(id = label),
                 style = MaterialTheme.typography.labelMedium,
             )
         }
-        FilesContainer(
-            modifier = Modifier.padding(horizontal = 12.dp).padding(top = 8.dp),
-            files = diploma.files
-        )
+//        FilesContainer(
+//            modifier = Modifier.padding(horizontal = 12.dp).padding(top = 8.dp),
+//            files = diploma.files
+//        )
+        fileName?.let {
+            FileItem(
+                modifier = Modifier
+                    .padding(horizontal = 12.dp)
+                    .padding(top = 8.dp),
+                fileName = fileName
+            )
+        }
         Column(
             modifier = modifier
                 .padding(12.dp)
@@ -79,15 +87,16 @@ private fun CommonFilePreviewLight() {
             CommonFileItem(
                 label = R.string.log_in_to_continue,
                 onSelectFileClick = {},
-                diploma = Diploma(
-                    files = listOf(
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Jackson.docs"
-                    )
-                )
+//                diploma = Diploma(
+//                    files = listOf(
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Jackson.docs"
+//                    )
+//                ),
+                fileName = "Kadrlar.pdf"
             )
         }
     }
@@ -100,16 +109,16 @@ private fun CommonFilePreviewDark() {
         Surface {
             CommonFileItem(
                 onSelectFileClick = {},
-                diploma = Diploma(
-                    files = listOf(
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Jackson.docs"
-                    )
-                )
-
+//                diploma = Diploma(
+//                    files = listOf(
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Jackson.docs"
+//                    )
+//                )
+                fileName = "Kadrlar.pdf"
             )
         }
     }

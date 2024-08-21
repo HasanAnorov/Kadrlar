@@ -6,12 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -26,13 +23,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.home.domain.Diploma
 
 @Composable
 fun FollowCardFile(
     modifier: Modifier = Modifier,
     onSelectFileClick: () -> Unit,
-    diploma: Diploma,
+//    diploma: Diploma,
+    fileName: String? = null,
     @StringRes label: Int? = null,
 ) {
     Card(modifier = modifier.background(MaterialTheme.colorScheme.background)) {
@@ -44,23 +41,24 @@ fun FollowCardFile(
             CommonFileItem(
                 label = label,
                 onSelectFileClick = onSelectFileClick,
-                diploma = diploma
+                fileName = fileName
+//                diploma = diploma
             )
         }
     }
 }
 
-@Composable
-fun FilesContainer(modifier: Modifier = Modifier, files: List<String>) {
-    LazyColumn(modifier = modifier.height(100.dp)) {
-        itemsIndexed(files) { index, item ->
-            FileItem(fileName = item)
-            if (index != files.lastIndex) {
-                Spacer(modifier = Modifier.height(4.dp))
-            }
-        }
-    }
-}
+//@Composable
+//fun FilesContainer(modifier: Modifier = Modifier, files: List<String>) {
+//    LazyColumn(modifier = modifier.height(100.dp)) {
+//        itemsIndexed(files) { index, item ->
+//            FileItem(fileName = item)
+//            if (index != files.lastIndex) {
+//                Spacer(modifier = Modifier.height(4.dp))
+//            }
+//        }
+//    }
+//}
 
 @Preview
 @Composable
@@ -112,15 +110,16 @@ private fun PreviewFollowCardFileLight() {
             FollowCardFile(
                 label = R.string.app_name,
                 onSelectFileClick = {},
-                diploma = Diploma(
-                    files = listOf(
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Jackson.docs"
-                    )
-                )
+//                diploma = Diploma(
+//                    files = listOf(
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Jackson.docs"
+//                    )
+//                ),
+                fileName = "Kadrlar.pdf"
             )
         }
     }
@@ -134,15 +133,16 @@ private fun PreviewFollowCardFileDark() {
             FollowCardFile(
                 label = R.string.app_name,
                 onSelectFileClick = {},
-                diploma = Diploma(
-                    files = listOf(
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Kadrlar.pdf",
-                        "Jackson.docs"
-                    )
-                )
+//                diploma = Diploma(
+//                    files = listOf(
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Kadrlar.pdf",
+//                        "Jackson.docs"
+//                    )
+//                )
+                fileName = "Kadrlar.pdf"
             )
         }
     }

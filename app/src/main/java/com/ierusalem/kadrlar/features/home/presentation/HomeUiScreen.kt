@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -41,6 +42,7 @@ fun HomeUiScreen(
                     .fillMaxWidth()
                     .weight(1F)
                     .padding(bottom = pv.calculateBottomPadding())
+                    .imePadding()
                     // So this basically doesn't do anything since we handle the padding ourselves
                     // BUT, we don't just want to consume it because we DO actually care when using
                     // Modifier.navigationBarsPadding()

@@ -16,7 +16,16 @@ sealed interface HomeScreenClickIntents {
     data class OnPinflChanged(val pinfl: String): HomeScreenClickIntents
     data class OnPassportSeriesChanged(val passportSeries: String): HomeScreenClickIntents
     data class OnPassportNumberChanged(val passportNumber: String): HomeScreenClickIntents
-    data class OnDateChange(val date: String): HomeScreenClickIntents
+
     data class OnPassportIssuedDateChanged(val passportIssuedDate: String): HomeScreenClickIntents
     data class OnPassportExpirationDateChanged(val passportExpirationDate: String): HomeScreenClickIntents
+
+    data class OnNationalityChanged(val nationality: String): HomeScreenClickIntents
+    data class OnCitizenshipChanged(val citizenship: String): HomeScreenClickIntents
+    data class OnPartisanshipChanged(val partisanship: String): HomeScreenClickIntents
+    data class OnGenderChanged(val gender: String): HomeScreenClickIntents
+    data class OnPhoneNumberChanged(val phoneNumber: String): HomeScreenClickIntents
+
+    data class OnBirthdayChanged(val date: String): HomeScreenClickIntents
+
 }
