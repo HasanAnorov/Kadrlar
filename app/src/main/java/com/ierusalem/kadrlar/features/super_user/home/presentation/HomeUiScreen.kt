@@ -1,4 +1,4 @@
-package com.ierusalem.kadrlar.features.profile.presentation
+package com.ierusalem.kadrlar.features.super_user.home.presentation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,16 +17,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.AppBar
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenClickIntents
-import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenState
-import com.ierusalem.kadrlar.features.profile.presentation.components.ProfileContent
+import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenState
+import com.ierusalem.kadrlar.features.super_user.home.presentation.components.HomeContent
+import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenClickIntents
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileUiScreen(
+fun HomeUiScreen(
     modifier: Modifier = Modifier,
-    uiState: ProfileScreenState,
-    eventHandler: (ProfileScreenClickIntents) -> Unit,
+    uiState: HomeScreenState,
+    eventHandler: (HomeScreenClickIntents) -> Unit,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize()
@@ -37,14 +35,13 @@ fun ProfileUiScreen(
             AppBar(
                 title = {
                     Text(
-                        text = stringResource(id = R.string.profile),
+                        text = stringResource(id = R.string.app_name),
                         style = MaterialTheme.typography.titleMedium
                     )
                 },
-                navIcon = Icons.AutoMirrored.Filled.ArrowBack,
-                onNavIconPressed = { eventHandler(ProfileScreenClickIntents.OnNavIconClicked) },
+                onNavIconPressed = { eventHandler(HomeScreenClickIntents.OnNavIconClicked) },
             )
-            ProfileContent(
+            HomeContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1F)
@@ -65,6 +62,6 @@ fun ProfileUiScreen(
 @Composable
 private fun PreviewLight() {
     KadrlarTheme {
-        ProfileUiScreen(uiState = ProfileScreenState(), eventHandler = {})
+        HomeUiScreen(uiState = HomeScreenState(), eventHandler = {})
     }
 }

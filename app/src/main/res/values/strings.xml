@@ -98,5 +98,6 @@
     <string name="graduated_university">Graduated university</string>
     <string name="please_fill_the_fields_to_save_diploma">Please fill the fields to save diploma!</string>
     <string name="profile">Profile</string>
+    <string name="something_went_wrong_please_try_again_later">Something went wrong, please try again later!</string>
 
 </resources>
