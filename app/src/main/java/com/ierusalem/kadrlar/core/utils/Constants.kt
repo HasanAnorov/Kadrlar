@@ -7,6 +7,8 @@ object Constants {
 
     const val DATA_STORE_NAME = "AppDataStore"
 
+    const val TEMP_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MDAxOTI4LCJpYXQiOjE3MjQ0MDk5MjgsImp0aSI6ImNhYzRmZDUwZTY1MjRiNmJhZmU1OTA5MDhkYTMxNjIzIiwidXNlcl9pZCI6MX0.5bN4qGDmfiVScrUTEng2nuou0gfoZIWPkmkTvdkQzXg"
+
     const val FOLDER_NAME_FOR_RESOURCES = "Kadrlar"
     private const val FILE_NAME_FOR_RESOURCES = "_kadrlar"
 

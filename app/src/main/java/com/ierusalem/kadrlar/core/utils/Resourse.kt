@@ -1,4 +1,4 @@
-package com.ierusalem.androchat.core.utils
+package com.ierusalem.kadrlar.core.utils
 
 sealed class Resource <T> (
     val data :T? =null,

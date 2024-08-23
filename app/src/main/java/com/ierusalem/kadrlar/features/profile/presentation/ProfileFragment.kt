@@ -10,14 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
-import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.core.utils.executeWithLifecycle
-import com.ierusalem.kadrlar.core.utils.shortToast
 import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenNavigation
 import com.ierusalem.kadrlar.features.profile.domain.ProfileViewModel
-import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenNavigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private val viewModel: ProfileViewModel by viewModels()
@@ -54,7 +53,7 @@ class ProfileFragment : Fragment() {
             ProfileScreenNavigation.OnNavIconClicked -> {
                 findNavController().popBackStack()
             }
-            ProfileScreenNavigation.OnFailure -> {
+            ProfileScreenNavigation.InvalidResponse -> {
 
             }
         }

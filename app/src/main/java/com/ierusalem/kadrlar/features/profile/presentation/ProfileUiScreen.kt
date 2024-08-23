@@ -16,12 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.ierusalem.kadrlar.core.ui.components.LoadingScreen
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.AppBar
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
+import com.ierusalem.kadrlar.core.utils.Resource
 import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenClickIntents
 import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenState
 import com.ierusalem.kadrlar.features.profile.presentation.components.ProfileContent
+import com.ierusalem.kadrlar.features.profile.presentation.components.ProfileError
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,19 +47,32 @@ fun ProfileUiScreen(
                 navIcon = Icons.AutoMirrored.Filled.ArrowBack,
                 onNavIconPressed = { eventHandler(ProfileScreenClickIntents.OnNavIconClicked) },
             )
-            ProfileContent(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1F)
-                    .padding(bottom = pv.calculateBottomPadding())
-                    .imePadding()
-                    // So this basically doesn't do anything since we handle the padding ourselves
-                    // BUT, we don't just want to consume it because we DO actually care when using
-                    // Modifier.navigationBarsPadding()
-                    .heightIn(min = pv.calculateBottomPadding()),
-                uiState = uiState,
-                eventHandler = eventHandler
-            )
+            when(uiState.profileScreen){
+                is Resource.Loading -> {
+                    LoadingScreen(modifier = Modifier.weight(1F))
+                }
+                is Resource.Success -> {
+                    val profileData = uiState.profileScreen.data!!
+                    ProfileContent(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1F)
+                            .padding(bottom = pv.calculateBottomPadding())
+                            .imePadding()
+                            // So this basically doesn't do anything since we handle the padding ourselves
+                            // BUT, we don't just want to consume it because we DO actually care when using
+                            // Modifier.navigationBarsPadding()
+                            .heightIn(min = pv.calculateBottomPadding()),
+                        uiState = profileData,
+                        eventHandler = eventHandler
+                    )
+                }
+                is Resource.Failure -> {
+                    ProfileError(
+                        modifier = Modifier.weight(1F)
+                    )
+                }
+            }
         }
     }
 }
@@ -65,6 +81,6 @@ fun ProfileUiScreen(
 @Composable
 private fun PreviewLight() {
     KadrlarTheme {
-        ProfileUiScreen(uiState = ProfileScreenState(), eventHandler = {})
+        ProfileUiScreen(uiState = ProfileScreenState(Resource.Loading()), eventHandler = {})
     }
 }

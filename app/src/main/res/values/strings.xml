@@ -99,5 +99,10 @@
     <string name="please_fill_the_fields_to_save_diploma">Please fill the fields to save diploma!</string>
     <string name="profile">Profile</string>
     <string name="something_went_wrong_please_try_again_later">Something went wrong, please try again later!</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="message">Message</string>
+    <string name="profile_error">There was an error loading the profile</string>
+    <string name="loading">Loading ...</string>
+    <string name="no_data_available">There is no data available</string>
 
 </resources>

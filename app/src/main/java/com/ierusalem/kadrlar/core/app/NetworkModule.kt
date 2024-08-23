@@ -8,6 +8,9 @@ import com.ierusalem.kadrlar.core.utils.Constants.BASE_URL
 import com.ierusalem.kadrlar.features.login.data.LoginRepositoryImpl
 import com.ierusalem.kadrlar.features.login.data.LoginService
 import com.ierusalem.kadrlar.features.login.domain.LoginRepository
+import com.ierusalem.kadrlar.features.profile.data.ProfileRepositoryImpl
+import com.ierusalem.kadrlar.features.profile.data.ProfileService
+import com.ierusalem.kadrlar.features.profile.domain.ProfileRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,7 +63,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(httpClient)
-            .addConverterFactory(gsonConverterFactory   )
+            .addConverterFactory(gsonConverterFactory)
             .build()
     }
 
@@ -72,10 +75,24 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    fun provideProfileService(retrofit: Retrofit): ProfileService {
+        return retrofit.create(ProfileService::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideLoginRepository(
         loginService: LoginService
     ): LoginRepository {
         return LoginRepositoryImpl(loginService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileRepository(
+        profileService: ProfileService
+    ): ProfileRepository {
+        return ProfileRepositoryImpl(profileService)
     }
 
 }
