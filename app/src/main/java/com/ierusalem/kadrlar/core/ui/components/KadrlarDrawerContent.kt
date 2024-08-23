@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +30,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,7 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.home.domain.HomeScreenClickIntents
+import com.ierusalem.kadrlar.features.user.home.domain.HomeScreenClickIntents
 import com.ierusalem.kadrlar.features.settings.data.PreviewSettings
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
@@ -56,6 +59,11 @@ fun KadrlarDrawerContent(
         DrawerHeader()
         DividerItem()
         Spacer(modifier = Modifier.height(2.dp))
+        ChatItem(
+            text = stringResource(id = R.string.profile),
+            image = rememberVectorPainter(image = Icons.Default.Person),
+            onChatClicked = { onDrawerItemClick(HomeScreenClickIntents.DrawerProfileClick) }
+        )
         ChatItem(
             text = stringResource(id = R.string.settings),
             image = painterResource(id = R.drawable.settings_sharp),
@@ -87,7 +95,7 @@ private fun DrawerHeader() {
                         .size(64.dp)
                         .background(MaterialTheme.colorScheme.primary),
                     contentAlignment = Alignment.Center
-                ){
+                ) {
                     Text(text = "H")
                 }
             },

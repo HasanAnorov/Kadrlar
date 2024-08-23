@@ -6,7 +6,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import com.ierusalem.kadrlar.features.home.domain.HomeScreenClickIntents
+import com.ierusalem.kadrlar.features.user.home.domain.HomeScreenClickIntents
 
 @Composable
 fun KadrlarDrawer(

@@ -28,7 +28,6 @@ import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 fun FollowCardFile(
     modifier: Modifier = Modifier,
     onSelectFileClick: () -> Unit,
-//    diploma: Diploma,
     fileName: String? = null,
     @StringRes label: Int? = null,
 ) {
@@ -42,23 +41,10 @@ fun FollowCardFile(
                 label = label,
                 onSelectFileClick = onSelectFileClick,
                 fileName = fileName
-//                diploma = diploma
             )
         }
     }
 }
-
-//@Composable
-//fun FilesContainer(modifier: Modifier = Modifier, files: List<String>) {
-//    LazyColumn(modifier = modifier.height(100.dp)) {
-//        itemsIndexed(files) { index, item ->
-//            FileItem(fileName = item)
-//            if (index != files.lastIndex) {
-//                Spacer(modifier = Modifier.height(4.dp))
-//            }
-//        }
-//    }
-//}
 
 @Preview
 @Composable
@@ -110,15 +96,6 @@ private fun PreviewFollowCardFileLight() {
             FollowCardFile(
                 label = R.string.app_name,
                 onSelectFileClick = {},
-//                diploma = Diploma(
-//                    files = listOf(
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Jackson.docs"
-//                    )
-//                ),
                 fileName = "Kadrlar.pdf"
             )
         }
@@ -133,15 +110,6 @@ private fun PreviewFollowCardFileDark() {
             FollowCardFile(
                 label = R.string.app_name,
                 onSelectFileClick = {},
-//                diploma = Diploma(
-//                    files = listOf(
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Jackson.docs"
-//                    )
-//                )
                 fileName = "Kadrlar.pdf"
             )
         }

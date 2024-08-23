@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ierusalem.kadrlar.features.home.presentation.HomeFragment"
+        android:name="com.ierusalem.kadrlar.features.user.home.presentation.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
@@ -49,6 +49,13 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out"
             app:destination="@id/supportFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_diplomaFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:destination="@id/diplomaFragment" />
     </fragment>
 
     <fragment
@@ -59,6 +66,10 @@
         android:id="@+id/supportFragment"
         android:name="com.ierusalem.kadrlar.features.chat.presentation.SupportFragment"
         android:label="SupportFragment" />
+    <fragment
+        android:id="@+id/diplomaFragment"
+        android:name="com.ierusalem.kadrlar.features.user.diploma.presentation.DiplomaFragment"
+        android:label="DiplomaFragment" />
 
 
 </navigation>

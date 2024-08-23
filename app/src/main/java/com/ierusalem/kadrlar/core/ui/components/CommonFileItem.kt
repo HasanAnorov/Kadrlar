@@ -27,7 +27,6 @@ import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 fun CommonFileItem(
     modifier: Modifier = Modifier,
     onSelectFileClick: () -> Unit,
-//    diploma: Diploma,
     fileName: String? = null,
     @StringRes label: Int? = null
 ) {
@@ -72,12 +71,24 @@ fun CommonFileItem(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .padding(bottom = 12.dp),
-                text = "Upload a file",
+                text = stringResource(R.string.upload_a_file),
                 style = MaterialTheme.typography.labelSmall
             )
         }
     }
 }
+
+//@Composable
+//fun FilesContainer(modifier: Modifier = Modifier, files: List<String>) {
+//    LazyColumn(modifier = modifier.height(100.dp)) {
+//        itemsIndexed(files) { index, item ->
+//            FileItem(fileName = item)
+//            if (index != files.lastIndex) {
+//                Spacer(modifier = Modifier.height(4.dp))
+//            }
+//        }
+//    }
+//}
 
 @Preview
 @Composable
@@ -87,15 +98,6 @@ private fun CommonFilePreviewLight() {
             CommonFileItem(
                 label = R.string.log_in_to_continue,
                 onSelectFileClick = {},
-//                diploma = Diploma(
-//                    files = listOf(
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Jackson.docs"
-//                    )
-//                ),
                 fileName = "Kadrlar.pdf"
             )
         }
@@ -109,15 +111,6 @@ private fun CommonFilePreviewDark() {
         Surface {
             CommonFileItem(
                 onSelectFileClick = {},
-//                diploma = Diploma(
-//                    files = listOf(
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Kadrlar.pdf",
-//                        "Jackson.docs"
-//                    )
-//                )
                 fileName = "Kadrlar.pdf"
             )
         }

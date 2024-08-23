@@ -71,5 +71,32 @@
     <string name="stickers_label">Stikerlar</string>
     <string name="now">8:30 PM</string>
     <string name="uzbek">O‘zbek</string>
+    <string name="nationality_description">Millatingizni kiriting</string>
+    <string name="nationality">Millati</string>
+    <string name="citizenship_description">Fuqaroligingizni kiriting</string>
+    <string name="citizenship">Fuqarolik</string>
+    <string name="partisanship_description">Partiyaviyligingizni kiriting</string>
+    <string name="partisanship">Partiyaviylik</string>
+    <string name="gender_description">Jinsingizni kiriting</string>
+    <string name="gender">Jinsi</string>
+    <string name="phone_number_description">Telefon raqamingizni kiriting</string>
+    <string name="phone_number">Telefon raqami</string>
+    <string name="diploma">Diploma</string>
+    <string name="upload_a_file">File yuklash</string>
+    <string name="add_diploma">Diplom qo\'shish</string>
+    <string name="diplomas">Diplom</string>
+    <string name="enter_diploma_type">Diplom turini kiriting</string>
+    <string name="diploma_type">Diplom turi</string>
+    <string name="enter_diploma_specification">Mutaxassisligingizni kiriting</string>
+    <string name="diploma_speciality">Mutaxassisligi</string>
+    <string name="diploma_series_description">Diplom seriyasini kiriting</string>
+    <string name="diploma_series">Diplom seriya</string>
+    <string name="diploma_number">Diplom nomeri</string>
+    <string name="diploma_number_description">Diplom raqamingizni kiriting</string>
+    <string name="graduation_date_description">Bitirgan yilingizni kiriting</string>
+    <string name="graduated_university_description">Tamomlagan universitingizni kiriting</string>
+    <string name="graduated_university">Tamomlagan universitet</string>
+    <string name="please_fill_the_fields_to_save_diploma">Diplomni saqlash uchun maydonlarni to‘ldiring!</string>
+    <string name="profile">Profil</string>
 
 </resources>

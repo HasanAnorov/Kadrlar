@@ -1,4 +1,4 @@
-package com.ierusalem.kadrlar.features.home.presentation
+package com.ierusalem.kadrlar.features.user.home.presentation
 
 import android.app.Activity
 import android.content.Intent
@@ -18,9 +18,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.KadrlarDrawer
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
@@ -31,9 +33,10 @@ import com.ierusalem.kadrlar.core.utils.executeWithLifecycle
 import com.ierusalem.kadrlar.core.utils.getFileNameFromUri
 import com.ierusalem.kadrlar.core.utils.getFileNameWithoutExtension
 import com.ierusalem.kadrlar.core.utils.log
-import com.ierusalem.kadrlar.features.home.domain.HomeScreenClickIntents
-import com.ierusalem.kadrlar.features.home.domain.HomeScreenNavigation
-import com.ierusalem.kadrlar.features.home.domain.HomeViewModel
+import com.ierusalem.kadrlar.features.user.diploma.domain.DiplomaScreenState
+import com.ierusalem.kadrlar.features.user.home.domain.HomeScreenClickIntents
+import com.ierusalem.kadrlar.features.user.home.domain.HomeScreenNavigation
+import com.ierusalem.kadrlar.features.user.home.domain.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
@@ -43,6 +46,7 @@ import java.io.FileOutputStream
 class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
+    private lateinit var gson: Gson
 
     private val getFilesLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -86,6 +90,18 @@ class HomeFragment : Fragment() {
 
                 viewModel.handleClickIntents(HomeScreenClickIntents.OnFilesAdded(file.name))
             }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        gson = Gson()
+        setFragmentResultListener(Constants.DIPLOMA_REQUEST_KEY) { _, bundle ->
+            // We use a String here, but any type that can be put in a Bundle is supported.
+            val diplomaStringForm = bundle.getString(Constants.DIPLOMA_BUNDLE_KEY)
+            val diploma = gson.fromJson(diplomaStringForm, DiplomaScreenState::class.java)
+            viewModel.addDiploma(diploma)
+            // Do something with the result.
         }
     }
 
@@ -153,12 +169,19 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
             }
 
+            HomeScreenNavigation.NavigateToProfile -> {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
+
             HomeScreenNavigation.NavigateToSupport -> {
                 findNavController().navigate(R.id.action_homeFragment_to_supportFragment)
             }
 
             HomeScreenNavigation.SelectFile -> {
                 showFileChooser()
+            }
+            HomeScreenNavigation.NavigateToDiploma -> {
+                findNavController().navigate(R.id.action_homeFragment_to_diplomaFragment)
             }
         }
     }

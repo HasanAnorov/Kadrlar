@@ -81,5 +81,22 @@
     <string name="gender">Gender</string>
     <string name="phone_number_description">Enter your phone number</string>
     <string name="phone_number">Phone number</string>
+    <string name="diploma">Diploma</string>
+    <string name="upload_a_file">Upload a file</string>
+    <string name="add_diploma">Add diploma</string>
+    <string name="diplomas">Diplomas</string>
+    <string name="enter_diploma_type">Enter your diplome type</string>
+    <string name="diploma_type">Diploma type</string>
+    <string name="enter_diploma_specification">Enter your speciality</string>
+    <string name="diploma_speciality">Diploma\'s speciality</string>
+    <string name="diploma_series_description">Enter your diploma\'s series</string>
+    <string name="diploma_series">Diploma series</string>
+    <string name="diploma_number">Diploma number</string>
+    <string name="diploma_number_description">Enter your diploma number</string>
+    <string name="graduation_date_description">Enter graduation date</string>
+    <string name="graduated_university_description">Enter your graduated university</string>
+    <string name="graduated_university">Graduated university</string>
+    <string name="please_fill_the_fields_to_save_diploma">Please fill the fields to save diploma!</string>
+    <string name="profile">Profile</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.ierusalem.kadrlar.features.home.domain
+package com.ierusalem.kadrlar.features.user.home.domain
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
@@ -10,6 +10,7 @@ import com.ierusalem.androchat.core.utils.UiText
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.connectivity.ConnectivityObserver
 import com.ierusalem.kadrlar.core.utils.log
+import com.ierusalem.kadrlar.features.user.diploma.domain.DiplomaScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -81,6 +82,10 @@ class HomeViewModel @Inject constructor(
     fun handleClickIntents(intent: HomeScreenClickIntents) {
         when (intent) {
 
+            HomeScreenClickIntents.DrawerProfileClick -> {
+                emitNavigation(HomeScreenNavigation.NavigateToProfile)
+            }
+
             is HomeScreenClickIntents.OnNationalityChanged -> {
                 _state.update {
                     it.copy(
@@ -123,16 +128,6 @@ class HomeViewModel @Inject constructor(
 
             is HomeScreenClickIntents.OnFilesAdded -> {
                 log("file name - ${intent.fileName}")
-//                val diplomas = _state.value.diplomas.apply {
-//                    this.toMutableList().first().apply {
-//                        this.files.toMutableList().add(intent.fileName)
-//                    }
-//                }
-//                _state.update {
-//                    it.copy(
-//                        diplomas = diplomas
-//                    )
-//                }
                 _state.update {
                     it.copy(
                         passportPdf = intent.fileName
@@ -224,18 +219,22 @@ class HomeViewModel @Inject constructor(
                 emitNavigation(HomeScreenNavigation.NavigateToSupport)
             }
 
-            HomeScreenClickIntents.OnSearchClick -> {
-
-            }
-
-            is HomeScreenClickIntents.TabItemClicked -> {
-
+            HomeScreenClickIntents.AddDiplomaClick -> {
+                emitNavigation(HomeScreenNavigation.NavigateToDiploma)
             }
 
             HomeScreenClickIntents.NavIconClicked -> {
                 openDrawer()
             }
 
+        }
+    }
+
+    fun addDiploma(diploma: DiplomaScreenState){
+        _state.update {
+            it.copy(
+                diplomas = it.diplomas.plus(diploma)
+            )
         }
     }
 
@@ -247,48 +246,29 @@ data class HomeScreenState(
     val connectivityStatus: UiText = UiText.StringResource(R.string.connectivity_unavailable),
 
     //home content
-    val firstName:String = "",
-    val lastName:String = "",
+    val firstName: String = "",
+    val lastName: String = "",
     val patronymicName: String = "",
 
     val pinfl: String = "",
 
     val passportSeries: String = "",
-    val passportNumber:String = "",
+    val passportNumber: String = "",
 
-    val passportIssuedDate:String = "2000-01-01",
-    val passportExpirationDate:String = "2000-01-01",
+    val passportIssuedDate: String = "2000-01-01",
+    val passportExpirationDate: String = "2000-01-01",
 
     //passport pdf
-//    val diplomas: List<Diploma> = listOf(
-//        Diploma(
-//            tag =  "",
-//            files = listOf(
-//                "Kadrlar.pdf",
-//                "Kadrlar.pdf",
-//                "Kadrlar.pdf",
-//                "Kadrlar.pdf",
-//                "Kadrlar.pdf",
-//                "Kadrlar.pdf"
-//            )
-//        )
-//    ),
     val passportPdf: String? = null,
 
     //profile
-    val nationality:String = "Uzbek",
-    val citizenship:String = "Uzbek",
-    val partisanship:String = "Uzbek",
+    val nationality: String = "Uzbek",
+    val citizenship: String = "Uzbek",
+    val partisanship: String = "Uzbek",
 
-    val dateOfBirthday:String = "2000-01-01",
+    val dateOfBirthday: String = "2000-01-01",
 
-    val gender:String = "Erkak",
-    val phoneNumber:String = "+998",
-
+    val gender: String = "Erkak",
+    val phoneNumber: String = "+998",
+    val diplomas: List<DiplomaScreenState> = emptyList()
 )
-
-//@Immutable
-//data class Diploma(
-//    val tag:String = "default",
-//    val files:List<String> = emptyList()
-//)

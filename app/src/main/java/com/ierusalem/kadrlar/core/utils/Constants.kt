@@ -28,6 +28,9 @@ object Constants {
 
     const val MINIMUM_LOGIN_LENGTH = 3
 
+    const val DIPLOMA_REQUEST_KEY = "diploma_request_key"
+    const val DIPLOMA_BUNDLE_KEY = "diploma_bundle_key"
+
     fun getLanguageCode(language: AppLanguage): String {
         return when (language) {
             AppLanguage.Uzbek -> UZBEK_LOCALE

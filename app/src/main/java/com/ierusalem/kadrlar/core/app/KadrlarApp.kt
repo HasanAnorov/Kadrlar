@@ -8,7 +8,6 @@ import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
-import com.ierusalem.kadrlar.core.utils.log
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +27,6 @@ class KadrlarApp : Application() {
 
         GlobalScope.launch {
             dataStorePreferenceRepository.getLanguage.collect { languageCode ->
-                log("language2 - $languageCode")
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     applicationContext.getSystemService(LocaleManager::class.java).applicationLocales =
                         LocaleList.forLanguageTags(languageCode)

@@ -71,5 +71,32 @@
     <string name="stickers_label">Стикеры</string>
     <string name="now">8:30 PM</string>
     <string name="uzbek">Узбекский</string>
+    <string name="nationality_description">Введите свою национальность</string>
+    <string name="nationality">Национальность</string>
+    <string name="citizenship_description">Введите свою гражданство</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="partisanship_description">Введите свою партия</string>
+    <string name="partisanship">Партия</string>
+    <string name="gender_description">Введите свой пол</string>
+    <string name="gender">Пол</string>
+    <string name="phone_number_description">Введите свой номер телефона</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="diploma">Диплом</string>
+    <string name="upload_a_file">Загрузить файл</string>
+    <string name="add_diploma">Добавить диплом</string>
+    <string name="diplomas">Дипломы</string>
+    <string name="enter_diploma_type">Введите тип своего диплома</string>
+    <string name="diploma_type">Тип диплома</string>
+    <string name="enter_diploma_specification">Введите свою специальность</string>
+    <string name="diploma_speciality">Специальность диплома</string>
+    <string name="diploma_series_description">Введите свою серию диплома</string>
+    <string name="diploma_series">Серия диплома</string>
+    <string name="diploma_number">Номер диплома</string>
+    <string name="diploma_number_description">Введите свой номер диплома</string>
+    <string name="graduation_date_description">Введите дату окончания обучения</string>
+    <string name="graduated_university_description">Введите свою высшее учебное заведение</string>
+    <string name="graduated_university">Высшее учебное заведение</string>
+    <string name="please_fill_the_fields_to_save_diploma">Пожалуйста, заполните поля для сохранения диплома!</string>
+    <string name="profile">Профиль</string>
 
 </resources>

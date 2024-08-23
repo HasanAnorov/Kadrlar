@@ -1,11 +1,10 @@
-package com.ierusalem.kadrlar.features.home.domain
+package com.ierusalem.kadrlar.features.user.home.domain
 
 sealed interface HomeScreenClickIntents {
-    data class TabItemClicked(val tabIndex: Int): HomeScreenClickIntents
     data object NavIconClicked: HomeScreenClickIntents
     data object DrawerSupportClick: HomeScreenClickIntents
+    data object DrawerProfileClick: HomeScreenClickIntents
     data object DrawerSettingClick: HomeScreenClickIntents
-    data object OnSearchClick: HomeScreenClickIntents
 
     data class OnFilesAdded(val fileName:String): HomeScreenClickIntents
 
@@ -18,7 +17,8 @@ sealed interface HomeScreenClickIntents {
     data class OnPassportNumberChanged(val passportNumber: String): HomeScreenClickIntents
 
     data class OnPassportIssuedDateChanged(val passportIssuedDate: String): HomeScreenClickIntents
-    data class OnPassportExpirationDateChanged(val passportExpirationDate: String): HomeScreenClickIntents
+    data class OnPassportExpirationDateChanged(val passportExpirationDate: String):
+        HomeScreenClickIntents
 
     data class OnNationalityChanged(val nationality: String): HomeScreenClickIntents
     data class OnCitizenshipChanged(val citizenship: String): HomeScreenClickIntents
@@ -27,5 +27,7 @@ sealed interface HomeScreenClickIntents {
     data class OnPhoneNumberChanged(val phoneNumber: String): HomeScreenClickIntents
 
     data class OnBirthdayChanged(val date: String): HomeScreenClickIntents
+
+    data object AddDiplomaClick: HomeScreenClickIntents
 
 }
