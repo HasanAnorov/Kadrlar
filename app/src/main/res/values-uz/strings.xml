@@ -56,7 +56,7 @@
     <string name="support">Yordam</string>
     <string name="author_me">men</string>
     <string name="jumpBottom">Pastga o‘tish</string>
-    <string name="not_available">Funksionallik hozirda mavjud emas</string>
+    <string name="functionality_currently_not_available">Funksionallik hozirda mavjud emas</string>
     <string name="not_available_subtitle">Ichimlik oling va keyinroq tekshiring!</string>
     <string name="emoji_selector_desc">Emoji selektori</string>
     <string name="emoji_selector_bt_desc">Emoji selektorini ko‘rsatish</string>

@@ -56,7 +56,7 @@
     <string name="support">Поддержка</string>
     <string name="author_me">me</string>
     <string name="jumpBottom">Перейти вниз</string>
-    <string name="not_available">В настоящее время функция недоступна</string>
+    <string name="functionality_currently_not_available">В настоящее время функция недоступна</string>
     <string name="not_available_subtitle">Возьмите напиток и зайдите позже!</string>
     <string name="emoji_selector_desc">Выбор эмодзи</string>
     <string name="emoji_selector_bt_desc">оказать выбор эмодзи</string>

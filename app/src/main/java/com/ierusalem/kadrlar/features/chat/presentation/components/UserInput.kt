@@ -220,7 +220,7 @@ fun FunctionalityNotAvailablePanel() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = stringResource(id = R.string.not_available),
+                text = stringResource(id = R.string.functionality_currently_not_available),
                 style = MaterialTheme.typography.titleMedium
             )
 

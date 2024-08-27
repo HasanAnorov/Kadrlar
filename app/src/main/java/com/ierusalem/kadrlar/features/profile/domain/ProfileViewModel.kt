@@ -63,6 +63,12 @@ class ProfileViewModel @Inject constructor(
             ProfileScreenClickIntents.OnNavIconClicked -> {
                 emitNavigation(ProfileScreenNavigation.OnNavIconClicked)
             }
+            ProfileScreenClickIntents.OnEditProfileClicked -> {
+
+            }
+            is ProfileScreenClickIntents.OnDownloadFileClicked -> {
+
+            }
         }
     }
 }
