@@ -1,12 +1,15 @@
 package com.ierusalem.kadrlar.features.chat.data.remote
 
+import com.ierusalem.kadrlar.core.utils.Constants
 import com.ierusalem.kadrlar.core.utils.Resource
 import com.ierusalem.kadrlar.core.utils.log
 import com.ierusalem.kadrlar.features.chat.data.remote.dto.MessageDto
 import com.ierusalem.kadrlar.features.chat.domain.model.Message
 import io.ktor.client.HttpClient
 import io.ktor.client.features.websocket.webSocketSession
+import io.ktor.client.request.header
 import io.ktor.client.request.url
+import io.ktor.http.HttpHeaders
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.WebSocketSession
 import io.ktor.http.cio.websocket.close
@@ -29,13 +32,9 @@ class ChatSocketServiceImpl(
     override suspend fun initSession(userId: Int): Resource<Unit> {
         log("initSession, userId: $userId")
         return try {
-//            val sd = client.webSocket("${ChatSocketService.Endpoints.ChatSocket.url}$userId/", request = {
-//                header(HttpHeaders.Origin, "http://213.230.126.222:9998/")
-//            }) {
-//
-//            }
             socket = client.webSocketSession {
                 url("${ChatSocketService.Endpoints.ChatSocket.url}$userId/")
+                header(HttpHeaders.Origin, Constants.BASE_URL)
             }
             if (socket?.isActive == true) {
                 Resource.Success(Unit)

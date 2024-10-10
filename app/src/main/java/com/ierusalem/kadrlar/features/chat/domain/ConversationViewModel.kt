@@ -92,7 +92,7 @@ class ConversationViewModel
 //            dataStorePreferenceRepository.getAccessToken.first()
 //        }
         val token =
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwOTgyMjM4LCJpYXQiOjE3MjgzOTAyMzgsImp0aSI6IjUxZGFiODYwN2YwNjQ2YTA5OGJjZjY3YmRhOTZiNjU3IiwidXNlcl9pZCI6MX0.cCRPhVH32kBrI9WSYfaJ8LElRANHAQ6DJOux3BWZ53g"
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMxMTI4NTM2LCJpYXQiOjE3Mjg1MzY1MzYsImp0aSI6ImE5YTFjMmE5Yjg4NDQ4YmRhZTBlY2E2YzQ2OTAzMjk1IiwidXNlcl9pZCI6MX0.V9d8lDTjFuAb3PEhzrYYITXBBfHmlkZCx4z-TqLPVtk"
 
         val chatsResponse = runBlocking {
             messagesRepository.getAllMessagesWithChatId(

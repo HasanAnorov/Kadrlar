@@ -15,6 +15,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.features.websocket.WebSockets
 import javax.inject.Singleton
@@ -45,7 +46,9 @@ object AppModule {
     @Singleton
     fun provideHttpClient(): HttpClient {
         return HttpClient(CIO) {
-            install(Logging)
+            install(Logging){
+                level = LogLevel.ALL
+            }
             install(WebSockets)
             install(JsonFeature) {
                 serializer = KotlinxSerializer()

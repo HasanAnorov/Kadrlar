@@ -18,12 +18,10 @@ interface ChatSocketService {
 
     companion object{
         const val BASE_URL = "ws://213.230.126.222:9190/"
-//        const val BASE_URL = "ws://172.16.0.13:7777/"
     }
 
     sealed class Endpoints(val url:String){
-//        data object ChatSocket: Endpoints("$BASE_URL/ws/chat/")
-        data object ChatSocket: Endpoints("$BASE_URL/ws/chat/1/")
+        data object ChatSocket: Endpoints("${BASE_URL}ws/chat/")
     }
 
 }
