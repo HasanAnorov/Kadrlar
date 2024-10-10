@@ -6,6 +6,7 @@ import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
 import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
+import com.ierusalem.kadrlar.core.utils.Constants
 import com.ierusalem.kadrlar.core.utils.Resource
 import com.ierusalem.kadrlar.core.utils.log
 import com.ierusalem.kadrlar.features.chat.data.remote.ChatSocketService
@@ -91,8 +92,7 @@ class ConversationViewModel
 //        val accessToken = runBlocking {
 //            dataStorePreferenceRepository.getAccessToken.first()
 //        }
-        val token =
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMxMTI4NTM2LCJpYXQiOjE3Mjg1MzY1MzYsImp0aSI6ImE5YTFjMmE5Yjg4NDQ4YmRhZTBlY2E2YzQ2OTAzMjk1IiwidXNlcl9pZCI6MX0.V9d8lDTjFuAb3PEhzrYYITXBBfHmlkZCx4z-TqLPVtk"
+        val token = Constants.TEMP_TOKEN
 
         val chatsResponse = runBlocking {
             messagesRepository.getAllMessagesWithChatId(

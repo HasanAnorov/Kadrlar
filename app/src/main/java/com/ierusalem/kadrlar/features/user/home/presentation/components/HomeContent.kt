@@ -287,7 +287,7 @@ fun HomeContent(
                     .fillMaxWidth()
                     .padding(horizontal = 8.dp)
                     .padding(bottom = 12.dp, top = 8.dp),
-                onClick = { },
+                onClick = { eventHandler.invoke(HomeScreenClickIntents.PostProfile) },
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Row(

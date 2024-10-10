@@ -7,12 +7,11 @@ object Constants {
 
     const val DATA_STORE_NAME = "AppDataStore"
 
-    const val TEMP_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MDAxOTI4LCJpYXQiOjE3MjQ0MDk5MjgsImp0aSI6ImNhYzRmZDUwZTY1MjRiNmJhZmU1OTA5MDhkYTMxNjIzIiwidXNlcl9pZCI6MX0.5bN4qGDmfiVScrUTEng2nuou0gfoZIWPkmkTvdkQzXg"
+    const val TEMP_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMxMTMzODkzLCJpYXQiOjE3Mjg1NDE4OTMsImp0aSI6ImE0YjI5NTExOWU5MzQ1NzI5MTZiNzg5ZGYxMmRhMjY3IiwidXNlcl9pZCI6NX0.kzQBRhL-FCluM6aKW56wl7vaL5Diz0ZoDZ30rYCyP_I"
 
     const val FOLDER_NAME_FOR_RESOURCES = "Kadrlar"
     private const val FILE_NAME_FOR_RESOURCES = "_kadrlar"
 
-//    const val BASE_URL = "http://172.16.0.13:8111/"
     const val BASE_URL = "http://213.230.126.222:9998/"
 
     const val PREFERENCE_LANGUAGE = "device_language"

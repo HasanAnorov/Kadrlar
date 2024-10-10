@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ProfileUser(
     @SerializedName("profile")
-    val profile: List<ProfileData>,
+    val profile: ProfileData?,
     @SerializedName("username")
     val username: String
 )

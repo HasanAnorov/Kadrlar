@@ -45,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
+import com.ierusalem.kadrlar.core.ui.components.EmptyScreen
 import com.ierusalem.kadrlar.core.ui.components.baselineHeight
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.features.profile.data.models.response.Diplomlar
@@ -69,32 +70,38 @@ fun ProfileContent(
             .nestedScroll(nestedScrollInteropConnection)
             .systemBarsPadding()
     ) {
+        val user = uiState.user.profile
         Surface {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(scrollState),
             ) {
-                val user = uiState.user.profile[0]
-                UserInfoFields(
-                    userData = user,
-                    containerHeight = this@BoxWithConstraints.maxHeight,
-                    eventHandler = eventHandler
-                )
+                if(user != null){
+                    UserInfoFields(
+                        userData = user,
+                        containerHeight = this@BoxWithConstraints.maxHeight,
+                        eventHandler = eventHandler
+                    )
+                }else{
+                    EmptyScreen()
+                }
             }
         }
 
-        val fabExtended by remember { derivedStateOf { scrollState.value == 0 } }
-        ProfileFab(
-            extended = fabExtended,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                // Offsets the FAB to compensate for CoordinatorLayout collapsing behaviour
-                .offset(y = ((-100).dp)),
-            onFabClicked = {
-                eventHandler(ProfileScreenClickIntents.OnEditProfileClicked)
-            }
-        )
+        if (user != null){
+            val fabExtended by remember { derivedStateOf { scrollState.value == 0 } }
+            ProfileFab(
+                extended = fabExtended,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    // Offsets the FAB to compensate for CoordinatorLayout collapsing behaviour
+                    .offset(y = ((-100).dp)),
+                onFabClicked = {
+                    eventHandler(ProfileScreenClickIntents.OnEditProfileClicked)
+                }
+            )
+        }
     }
 }
 
@@ -104,10 +111,8 @@ private fun UserInfoFields(
     containerHeight: Dp,
     eventHandler: (ProfileScreenClickIntents) -> Unit,
 ) {
-
     Column {
         Spacer(modifier = Modifier.height(8.dp))
-
         NameAndPosition(userData)
 
 //        ProfileProperty(stringResource(R.string.pinfl), userData.jshir)
@@ -331,7 +336,7 @@ private fun PreviewLight() {
         ProfileContent(
             uiState = ProfileResponse(
                 status = 200, user = ProfileUser(
-                    profile = listOf(
+                    profile = (
                         ProfileData(
                             address = "Samarkand, Uzbekistan",
                             boshlaganVaqti = "01-03-2023",
@@ -418,7 +423,7 @@ private fun PreviewDark() {
             uiState = ProfileResponse(
                 status = 200,
                 user = ProfileUser(
-                    profile = listOf(
+                    profile = (
                         ProfileData(
                             address = null,
                             boshlaganVaqti = "01-03-2023",

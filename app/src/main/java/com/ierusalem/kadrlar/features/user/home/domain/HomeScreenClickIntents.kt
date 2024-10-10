@@ -30,4 +30,6 @@ sealed interface HomeScreenClickIntents {
 
     data object AddDiplomaClick: HomeScreenClickIntents
 
+    data object PostProfile: HomeScreenClickIntents
+
 }

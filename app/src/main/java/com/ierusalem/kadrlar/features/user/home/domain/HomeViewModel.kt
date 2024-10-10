@@ -82,6 +82,10 @@ class HomeViewModel @Inject constructor(
     fun handleClickIntents(intent: HomeScreenClickIntents) {
         when (intent) {
 
+            HomeScreenClickIntents.PostProfile -> {
+
+            }
+
             HomeScreenClickIntents.DrawerProfileClick -> {
                 emitNavigation(HomeScreenNavigation.NavigateToProfile)
             }
@@ -264,7 +268,7 @@ data class HomeScreenState(
     //profile
     val nationality: String = "Uzbek",
     val citizenship: String = "Uzbek",
-    val partisanship: String = "Uzbek",
+    val partisanship: String = "UzLidep",
 
     val dateOfBirthday: String = "2000-01-01",
 
