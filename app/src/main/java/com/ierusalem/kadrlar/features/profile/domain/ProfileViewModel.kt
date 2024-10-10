@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ierusalem.androchat.core.ui.navigation.DefaultNavigationEventDelegate
 import com.ierusalem.androchat.core.ui.navigation.emitNavigation
-import com.ierusalem.kadrlar.core.utils.Resource
+import com.ierusalem.kadrlar.core.utils.ResourceWithLoading
 import com.ierusalem.kadrlar.core.preferences.DataStorePreferenceRepository
 import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
 import com.ierusalem.kadrlar.core.utils.Constants
@@ -43,14 +43,14 @@ class ProfileViewModel @Inject constructor(
                     log("profile response : $profileResponse")
                     _state.update { uiState ->
                         uiState.copy(
-                            profileScreen = Resource.Success(profileResponse)
+                            profileScreen = ResourceWithLoading.Success(profileResponse)
                         )
                     }
                 } else {
                     //emitNavigation(ProfileScreenNavigation.InvalidResponse)
                     _state.update { uiState ->
                         uiState.copy(
-                            profileScreen = Resource.Failure(it.message())
+                            profileScreen = ResourceWithLoading.Failure(it.message())
                         )
                     }
                 }
@@ -74,5 +74,5 @@ class ProfileViewModel @Inject constructor(
 }
 
 data class ProfileScreenState(
-    val profileScreen: Resource<ProfileResponse> = Resource.Loading()
+    val profileScreen: ResourceWithLoading<ProfileResponse> = ResourceWithLoading.Loading()
 )

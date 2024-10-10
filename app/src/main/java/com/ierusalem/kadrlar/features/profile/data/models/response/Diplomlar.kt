@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Diplomlar(
     @SerializedName("file")
-    val `file`: Any,
+    val `file`: String?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("mutaxasisligi")

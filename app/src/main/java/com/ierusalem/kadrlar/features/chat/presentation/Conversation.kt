@@ -1,8 +1,6 @@
 package com.ierusalem.kadrlar.features.chat.presentation
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,19 +8,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.exclude
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFrom
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
@@ -43,24 +38,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.AppBar
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.chat.data.exampleUiState
+import com.ierusalem.kadrlar.features.chat.domain.ConversationState
 import com.ierusalem.kadrlar.features.chat.domain.ConversationUiEvents
-import com.ierusalem.kadrlar.features.chat.domain.ConversationUiState
-import com.ierusalem.kadrlar.features.chat.domain.Message
+import com.ierusalem.kadrlar.features.chat.domain.model.Message
 import com.ierusalem.kadrlar.features.chat.presentation.components.JumpToBottom
 import com.ierusalem.kadrlar.features.chat.presentation.components.SymbolAnnotationType
 import com.ierusalem.kadrlar.features.chat.presentation.components.UserInput
@@ -70,18 +59,16 @@ import kotlinx.coroutines.launch
 /**
  * Entry point for a conversation screen.
  *
- * @param uiState [ConversationUiState] that contains messages to display
+ * @param uiState [ConversationState] that contains messages to display
  * @param modifier [Modifier] to apply to this layout node
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConversationContent(
-    uiState: ConversationUiState,
+    uiState: ConversationState,
     modifier: Modifier = Modifier,
     eventHandler: (ConversationUiEvents) -> Unit = {}
 ) {
-    val authorMe = stringResource(R.string.author_me)
-    val timeNow = stringResource(id = R.string.now)
 
     val scrollState = rememberLazyListState()
     val topBarState = rememberTopAppBarState()
@@ -115,16 +102,14 @@ fun ConversationContent(
                 .padding(paddingValues)
         ) {
             Messages(
-                messages = uiState.messages,
+                messages = uiState.messages.reversed(),
                 navigateToProfile = { },
                 modifier = Modifier.weight(1f),
                 scrollState = scrollState
             )
             UserInput(
                 onMessageSent = { content ->
-                    uiState.addMessage(
-                        Message(authorMe, content, timeNow)
-                    )
+                    eventHandler(ConversationUiEvents.OnMessageSent(content))
                 },
                 resetScroll = {
                     scope.launch {
@@ -141,7 +126,6 @@ fun ConversationContent(
     }
 }
 
-
 const val ConversationTestTag = "ConversationTestTag"
 
 @Composable
@@ -154,7 +138,8 @@ fun Messages(
     val scope = rememberCoroutineScope()
     Box(modifier = modifier) {
 
-        val authorMe = stringResource(id = R.string.author_me)
+        //fixme
+        val authorMe = 1
         LazyColumn(
             reverseLayout = true,
             state = scrollState,
@@ -163,16 +148,16 @@ fun Messages(
                 .fillMaxSize()
         ) {
             for (index in messages.indices) {
-                val prevAuthor = messages.getOrNull(index - 1)?.author
-                val nextAuthor = messages.getOrNull(index + 1)?.author
+                val prevAuthor = messages.getOrNull(index - 1)?.userId
+                val nextAuthor = messages.getOrNull(index + 1)?.userId
                 val content = messages[index]
-                val isFirstMessageByAuthor = prevAuthor != content.author
-                val isLastMessageByAuthor = nextAuthor != content.author
+                val isFirstMessageByAuthor = prevAuthor != content.userId
+                val isLastMessageByAuthor = nextAuthor != content.userId
                 item {
                     Message(
                         onAuthorClick = { name -> navigateToProfile(name) },
                         msg = content,
-                        isUserMe = content.author == authorMe,
+                        isUserMe = content.userId == authorMe,
                         isFirstMessageByAuthor = isFirstMessageByAuthor,
                         isLastMessageByAuthor = isLastMessageByAuthor
                     )
@@ -215,42 +200,18 @@ fun Message(
     isFirstMessageByAuthor: Boolean,
     isLastMessageByAuthor: Boolean
 ) {
-    val borderColor = if (isUserMe) {
-        MaterialTheme.colorScheme.primary
-    } else {
-        MaterialTheme.colorScheme.tertiary
-    }
-
     val spaceBetweenAuthors = if (isLastMessageByAuthor) Modifier.padding(top = 8.dp) else Modifier
-    Row(modifier = spaceBetweenAuthors) {
-        if (isLastMessageByAuthor) {
-            // Avatar
-            Image(
-                modifier = Modifier
-                    .clickable(onClick = { onAuthorClick(msg.author) })
-                    .padding(horizontal = 16.dp)
-                    .size(42.dp)
-                    .border(1.5.dp, borderColor, CircleShape)
-                    .border(3.dp, MaterialTheme.colorScheme.surface, CircleShape)
-                    .clip(CircleShape)
-                    .align(Alignment.Top),
-                painter = painterResource(id = msg.authorImage),
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-        } else {
-            // Space under avatar
-            Spacer(modifier = Modifier.width(74.dp))
-        }
+    Row(
+        modifier = spaceBetweenAuthors.fillMaxWidth(),
+        horizontalArrangement = if (isUserMe) Arrangement.End else Arrangement.Start
+    ) {
         AuthorAndTextMessage(
             msg = msg,
             isUserMe = isUserMe,
             isFirstMessageByAuthor = isFirstMessageByAuthor,
-            isLastMessageByAuthor = isLastMessageByAuthor,
             authorClicked = onAuthorClick,
             modifier = Modifier
-                .padding(end = 16.dp)
-                .weight(1f)
+                .padding(horizontal = 16.dp)
         )
     }
 }
@@ -260,14 +221,10 @@ fun AuthorAndTextMessage(
     msg: Message,
     isUserMe: Boolean,
     isFirstMessageByAuthor: Boolean,
-    isLastMessageByAuthor: Boolean,
     authorClicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        if (isLastMessageByAuthor) {
-            AuthorNameTimestamp(msg)
-        }
         ChatItemBubble(msg, isUserMe, authorClicked = authorClicked)
         if (isFirstMessageByAuthor) {
             // Last bubble before next author
@@ -279,28 +236,8 @@ fun AuthorAndTextMessage(
     }
 }
 
-@Composable
-private fun AuthorNameTimestamp(msg: Message) {
-    // Combine author and timestamp for a11y.
-    Row(modifier = Modifier.semantics(mergeDescendants = true) {}) {
-        Text(
-            text = msg.author,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier
-                .alignBy(LastBaseline)
-                .paddingFrom(LastBaseline, after = 8.dp) // Space to 1st bubble
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = msg.timestamp,
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.alignBy(LastBaseline),
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
-
-private val ChatBubbleShape = RoundedCornerShape(4.dp, 20.dp, 20.dp, 20.dp)
+val ChatBubbleShapeStart = RoundedCornerShape(4.dp, 20.dp, 20.dp, 20.dp)
+val ChatBubbleShapeEnd = RoundedCornerShape(20.dp, 4.dp, 20.dp, 20.dp)
 
 @Composable
 fun ChatItemBubble(
@@ -318,28 +255,13 @@ fun ChatItemBubble(
     Column {
         Surface(
             color = backgroundBubbleColor,
-            shape = ChatBubbleShape
+            shape = if (isUserMe) ChatBubbleShapeEnd else ChatBubbleShapeStart,
         ) {
             ClickableMessage(
                 message = message,
                 isUserMe = isUserMe,
                 authorClicked = authorClicked
             )
-        }
-
-        message.image?.let {
-            Spacer(modifier = Modifier.height(4.dp))
-            Surface(
-                color = backgroundBubbleColor,
-                shape = ChatBubbleShape
-            ) {
-                Image(
-                    painter = painterResource(it),
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.size(160.dp),
-                    contentDescription = null
-                )
-            }
         }
     }
 }
@@ -353,7 +275,7 @@ fun ClickableMessage(
     val uriHandler = LocalUriHandler.current
 
     val styledMessage = messageFormatter(
-        text = message.content,
+        text = message.message,
         primary = isUserMe
     )
 
@@ -381,7 +303,30 @@ fun ClickableMessage(
 fun ConversationPreview() {
     KadrlarTheme {
         ConversationContent(
-            uiState = exampleUiState,
+            uiState = ConversationState(
+                messages = listOf(
+                    Message(
+                        message = "Hello",
+                        userId = 1
+                    ),
+                    Message(
+                        message = "Hello again",
+                        userId = 1
+                    ),
+                    Message(
+                        message = "What happened",
+                        userId = 1
+                    ),
+                    Message(
+                        message = "What happened",
+                        userId = 2
+                    ),
+                    Message(
+                        message = "What happened",
+                        userId = 2
+                    )
+                )
+            ),
         )
     }
 }

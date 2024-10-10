@@ -5,6 +5,9 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.GsonBuilder
 import com.ierusalem.kadrlar.core.utils.Constants.BASE_URL
+import com.ierusalem.kadrlar.features.chat.data.remote.MessageRepositoryImpl
+import com.ierusalem.kadrlar.features.chat.data.remote.MessageService
+import com.ierusalem.kadrlar.features.chat.data.remote.MessagesRepository
 import com.ierusalem.kadrlar.features.login.data.LoginRepositoryImpl
 import com.ierusalem.kadrlar.features.login.data.LoginService
 import com.ierusalem.kadrlar.features.login.domain.LoginRepository
@@ -75,6 +78,12 @@ object NetworkModule {
 
     @Provides
     @Singleton
+    fun provideMessagesService(retrofit: Retrofit):MessageService{
+        return retrofit.create(MessageService::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideProfileService(retrofit: Retrofit): ProfileService {
         return retrofit.create(ProfileService::class.java)
     }
@@ -85,6 +94,14 @@ object NetworkModule {
         loginService: LoginService
     ): LoginRepository {
         return LoginRepositoryImpl(loginService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMessageRepository(
+        messageService: MessageService
+    ): MessagesRepository {
+        return MessageRepositoryImpl(messageService)
     }
 
     @Provides

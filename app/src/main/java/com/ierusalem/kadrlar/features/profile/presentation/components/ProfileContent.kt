@@ -1,5 +1,6 @@
 package com.ierusalem.kadrlar.features.profile.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -7,12 +8,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -31,16 +35,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.baselineHeight
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
+import com.ierusalem.kadrlar.features.profile.data.models.response.Diplomlar
 import com.ierusalem.kadrlar.features.profile.data.models.response.ProfileData
 import com.ierusalem.kadrlar.features.profile.data.models.response.ProfileResponse
 import com.ierusalem.kadrlar.features.profile.data.models.response.ProfileUser
@@ -139,8 +146,20 @@ private fun UserInfoFields(
         HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
         Name(
             username = stringResource(id = R.string.diplomas),
-            modifier = Modifier.padding(horizontal = 16.dp).padding(top = 8.dp)
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(top = 8.dp)
         )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .background(Color.Red)
+        ) {
+            items(userData.diplomlar) {
+                DiplomaProperty(diploma = it, diplomaNumber = "1")
+            }
+        }
 
 //        ProfileProperty(stringResource(R.string.twitter), userData.twitter, isLink = true)
 
@@ -236,7 +255,6 @@ fun ProfileFileProperty(
     }
 }
 
-
 @Composable
 fun ProfileProperty(label: String, value: String?, isLink: Boolean = false) {
     Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)) {
@@ -266,7 +284,11 @@ fun ProfileError(modifier: Modifier = Modifier) {
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
-        Text(stringResource(R.string.profile_error))
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = stringResource(R.string.profile_error)
+        )
     }
 }
 
@@ -318,7 +340,41 @@ private fun PreviewLight() {
                             dateOfBirth = "20-03-2001",
                             dateOfPassport = "20-05-2025",
                             davlatMukofotlari = "",
-                            diplomlar = listOf(),
+                            diplomlar = listOf(
+                                Diplomlar(
+                                    file = "file_link",
+                                    id = 1,
+                                    mutaxasisligi = "Mutaxassisligi",
+                                    nomeri = "2349s7df9793",
+                                    profile = 1,
+                                    seriyasi = "ABF",
+                                    tugatganMuassasasi = "Toshkent Axborot Texnologiyalari Universiteti",
+                                    tugatganYili = "2019",
+                                    xujjatTuri = "Bakalavr diplomi"
+                                ),
+                                Diplomlar(
+                                    file = "file_link",
+                                    id = 1,
+                                    mutaxasisligi = "Mutaxassisligi",
+                                    nomeri = "2349s7df9793",
+                                    profile = 1,
+                                    seriyasi = "ABF",
+                                    tugatganMuassasasi = "Toshkent Axborot Texnologiyalari Universiteti",
+                                    tugatganYili = "2019",
+                                    xujjatTuri = "Bakalavr diplomi"
+                                ),
+                                Diplomlar(
+                                    file = "file_link",
+                                    id = 1,
+                                    mutaxasisligi = "Mutaxassisligi",
+                                    nomeri = "2349s7df9793",
+                                    profile = 1,
+                                    seriyasi = "ABF",
+                                    tugatganMuassasasi = "Toshkent Axborot Texnologiyalari Universiteti",
+                                    tugatganYili = "2019",
+                                    xujjatTuri = "Bakalavr diplomi"
+                                )
+                            ),
                             district = "Jomboy",
                             firstName = "Hasan",
                             gender = "Male",

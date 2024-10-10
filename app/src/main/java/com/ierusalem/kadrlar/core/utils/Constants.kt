@@ -12,10 +12,12 @@ object Constants {
     const val FOLDER_NAME_FOR_RESOURCES = "Kadrlar"
     private const val FILE_NAME_FOR_RESOURCES = "_kadrlar"
 
-    const val BASE_URL = "https://kadr.samduuf.uz/"
+//    const val BASE_URL = "http://172.16.0.13:8111/"
+    const val BASE_URL = "http://213.230.126.222:9998/"
 
     const val PREFERENCE_LANGUAGE = "device_language"
     const val PREFERENCE_THEME = "device_theme"
+    const val PREFERENCE_USER_ID = "device_user_id"
     const val PREFERENCE_ACCESS_TOKEN = "device_access_token"
     const val PREFERENCE_REFRESH_TOKEN = "device_refresh_token"
 

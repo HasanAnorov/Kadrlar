@@ -48,7 +48,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -110,4 +110,15 @@ dependencies {
 
     //datastore used for preferences
     implementation (libs.androidx.datastore.preferences)
+
+    //serialization
+    implementation (libs.kotlinx.serialization.json)
+
+    //ktor
+    implementation (libs.ktor.client.core)
+    implementation (libs.ktor.client.cio)
+    implementation (libs.ktor.client.serialization)
+    implementation (libs.ktor.client.websockets)
+    implementation (libs.ktor.client.logging)
+    implementation (libs.logback.classic)
 }

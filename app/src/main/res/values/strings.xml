@@ -119,5 +119,6 @@
     <string name="qualification_area">Area of qualification</string>
     <string name="starting_date">Starting Date</string>
     <string name="ending_date">Ending date</string>
+    <string name="graduation_date">Graduation date</string>
 
 </resources>

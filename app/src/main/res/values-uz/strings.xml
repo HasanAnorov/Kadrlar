@@ -99,4 +99,27 @@
     <string name="please_fill_the_fields_to_save_diploma">Diplomni saqlash uchun maydonlarni to‘ldiring!</string>
     <string name="profile">Profil</string>
 
+    <string name="something_went_wrong_please_try_again_later">Nimadir xato ketdi, keyinroq qayta urinib ko‘ring!</string>
+    <string name="edit_profile">Profilni tahrirlash</string>
+    <string name="message">Xabar</string>
+    <string name="profile_error">Profilni yuklashda xatolik yuz berdi</string>
+    <string name="loading">Yuklanmoqda…</string>
+    <string name="no_data_available">Ma\'lumotlar mavjud emas</string>
+    <string name="not_available">Mavjud emas</string>
+    <string name="passport_pdf">Pasport (PDF)</string>
+    <string name="birthday">Tug\'ilgan kun</string>
+    <string name="address">Manzil</string>
+    <string name="city">Shahar</string>
+    <string name="district">Tuman</string>
+    <string name="inn_number">INN nomer</string>
+    <string name="pension_register_number">Pensiya raqami</string>
+    <string name="language_proficiency">Tilni bilish</string>
+    <string name="government_awards">Hukumat mukofotlari</string>
+    <string name="departamental_awards">Tashkilot mukofatlari</string>
+    <string name="qualification_organization_name">Malaka tashkilot nomi</string>
+    <string name="qualification_area">Malaka sohasi</string>
+    <string name="starting_date">Boshlanish sanasi</string>
+    <string name="ending_date">Tugash sanasi</string>
+    <string name="graduation_date">Bitiruv sanasi</string>
+
 </resources>

@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.ierusalem.kadrlar.core.utils.Constants
@@ -23,6 +24,7 @@ class DataStorePreferenceRepository(context: Context) {
     companion object {
         val PREF_LANGUAGE = stringPreferencesKey(name = Constants.PREFERENCE_LANGUAGE)
         val PREF_THEME = booleanPreferencesKey(name = Constants.PREFERENCE_THEME)
+        val PREF_USER_ID = intPreferencesKey(name = Constants.PREFERENCE_USER_ID)
         val PREF_ACCESS_TOKEN = stringPreferencesKey(name = Constants.PREFERENCE_ACCESS_TOKEN)
         val PREF_REFRESH_TOKEN = stringPreferencesKey(name = Constants.PREFERENCE_REFRESH_TOKEN)
 
@@ -39,6 +41,17 @@ class DataStorePreferenceRepository(context: Context) {
             }
         }
     }
+
+    suspend fun saveUserId(userId: Int){
+        dataStore.edit { preferences ->
+            preferences[PREF_USER_ID] = userId
+        }
+    }
+
+    val getUserId: Flow<Int> = dataStore.data
+        .map { preferences ->
+            preferences[PREF_USER_ID] ?: -1
+        }
 
     suspend fun saveAccessToken(accessToken: String) {
         dataStore.edit { preferences ->

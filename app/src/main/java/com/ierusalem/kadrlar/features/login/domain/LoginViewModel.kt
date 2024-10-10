@@ -101,9 +101,10 @@ class LoginViewModel @Inject constructor(
             repository.loginUser(userLoginRequest).let {
                 if (it.isSuccessful) {
                     val userLoginResponse = it.body()!!
-                    log("loginUser: \naccess token ${userLoginResponse.access} \nrefresh token ${userLoginResponse.refresh}")
-                    dataStorePreferenceRepository.saveAccessToken(userLoginResponse.access)
-                    dataStorePreferenceRepository.saveRefreshToken(userLoginResponse.refresh)
+                    log("loginUser: \naccess token ${userLoginResponse.tokens.access} \nrefresh token ${userLoginResponse.tokens.refresh}")
+                    dataStorePreferenceRepository.saveAccessToken(userLoginResponse.tokens.access)
+                    dataStorePreferenceRepository.saveRefreshToken(userLoginResponse.tokens.refresh)
+                    dataStorePreferenceRepository.saveUserId(userLoginResponse.id)
 
                     emitNavigation(LoginNavigation.ToHome)
                 } else {

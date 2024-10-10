@@ -20,7 +20,7 @@ import com.ierusalem.kadrlar.core.ui.components.LoadingScreen
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.AppBar
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.core.utils.Resource
+import com.ierusalem.kadrlar.core.utils.ResourceWithLoading
 import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenClickIntents
 import com.ierusalem.kadrlar.features.profile.domain.ProfileScreenState
 import com.ierusalem.kadrlar.features.profile.presentation.components.ProfileContent
@@ -48,10 +48,10 @@ fun ProfileUiScreen(
                 onNavIconPressed = { eventHandler(ProfileScreenClickIntents.OnNavIconClicked) },
             )
             when(uiState.profileScreen){
-                is Resource.Loading -> {
+                is ResourceWithLoading.Loading -> {
                     LoadingScreen(modifier = Modifier.weight(1F))
                 }
-                is Resource.Success -> {
+                is ResourceWithLoading.Success -> {
                     val profileData = uiState.profileScreen.data!!
                     ProfileContent(
                         modifier = Modifier
@@ -67,7 +67,7 @@ fun ProfileUiScreen(
                         eventHandler = eventHandler
                     )
                 }
-                is Resource.Failure -> {
+                is ResourceWithLoading.Failure -> {
                     ProfileError(
                         modifier = Modifier.weight(1F)
                     )
@@ -81,6 +81,6 @@ fun ProfileUiScreen(
 @Composable
 private fun PreviewLight() {
     KadrlarTheme {
-        ProfileUiScreen(uiState = ProfileScreenState(Resource.Loading()), eventHandler = {})
+        ProfileUiScreen(uiState = ProfileScreenState(ResourceWithLoading.Loading()), eventHandler = {})
     }
 }

@@ -99,4 +99,27 @@
     <string name="please_fill_the_fields_to_save_diploma">Пожалуйста, заполните поля для сохранения диплома!</string>
     <string name="profile">Профиль</string>
 
+    <string name="something_went_wrong_please_try_again_later">Что-то пошло не так, попробуйте еще раз позже!</string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="message">Сообщение</string>
+    <string name="profile_error">Произошла ошибка при загрузке профиля</string>
+    <string name="loading">Загрузка…</string>
+    <string name="no_data_available">Нет доступных данных.</string>
+    <string name="not_available">Нет в наличии</string>
+    <string name="passport_pdf">Паспорт (PDF)</string>
+    <string name="birthday">День рождения</string>
+    <string name="address">Адрес</string>
+    <string name="city">Город</string>
+    <string name="district">Округ</string>
+    <string name="inn_number">Номер ИНН</string>
+    <string name="pension_register_number">Номер пенсионного регистра</string>
+    <string name="language_proficiency">Знание языка</string>
+    <string name="government_awards">Правительственные награды</string>
+    <string name="departamental_awards">Награды ведомства</string>
+    <string name="qualification_organization_name">Название квалификационной организации</string>
+    <string name="qualification_area">Область квалификации</string>
+    <string name="starting_date">Дата начала</string>
+    <string name="ending_date">Дата окончания</string>
+    <string name="graduation_date">Дата окончания обучения</string>
+
 </resources>
