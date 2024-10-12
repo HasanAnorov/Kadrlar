@@ -20,13 +20,13 @@ import com.ierusalem.kadrlar.core.ui.components.KadrlarHostDrawer
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.core.utils.executeWithLifecycle
 import com.ierusalem.kadrlar.core.utils.shortToast
-import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenNavigation
-import com.ierusalem.kadrlar.features.super_user.home.domain.HomeViewModel
+import com.ierusalem.kadrlar.features.super_user.home.domain.SuperHomeScreenNavigation
+import com.ierusalem.kadrlar.features.super_user.home.domain.SuperHomeViewModel
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
+class SuperHomeFragment : Fragment() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: SuperHomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
                         drawerState = drawerState,
                         onDrawerItemClick = viewModel::handleClickIntents,
                         content = {
-                            HomeUiScreen(
+                            SuperHomeUiScreen(
                                 uiState = uiState.value,
                                 eventHandler = viewModel::handleClickIntents
                             )
@@ -86,15 +86,15 @@ class HomeFragment : Fragment() {
             )
         }
 
-        private fun executeNavigation(navigation: HomeScreenNavigation) {
+        private fun executeNavigation(navigation: SuperHomeScreenNavigation) {
             when (navigation) {
-                HomeScreenNavigation.OnFailure -> {
+                SuperHomeScreenNavigation.OnFailure -> {
                     shortToast(getString(R.string.something_went_wrong_please_try_again_later))
                 }
-                HomeScreenNavigation.OnProfileClicked -> {
+                SuperHomeScreenNavigation.OnProfileClicked -> {
                     findNavController().navigate(R.id.action_homeFragment2_to_profileFragment)
                 }
-                HomeScreenNavigation.OnSettingsClicked -> {
+                SuperHomeScreenNavigation.OnSettingsClicked -> {
                     findNavController().navigate(R.id.action_homeFragment2_to_settingsFragment)
                 }
             }

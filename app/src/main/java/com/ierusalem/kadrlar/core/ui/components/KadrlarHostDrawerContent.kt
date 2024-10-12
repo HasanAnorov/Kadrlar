@@ -39,13 +39,13 @@ import androidx.compose.ui.unit.dp
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
 import com.ierusalem.kadrlar.features.settings.data.PreviewSettings
-import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenClickIntents
+import com.ierusalem.kadrlar.features.super_user.home.domain.SuperHomeScreenClickIntents
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun KadrlarHostDrawerContent(
-    onDrawerItemClick: (HomeScreenClickIntents) -> Unit
+    onDrawerItemClick: (SuperHomeScreenClickIntents) -> Unit
 ) {
     // Use windowInsetsTopHeight() to add a spacer which pushes the drawer content
     // below the status bar (y-axis)
@@ -61,12 +61,12 @@ fun KadrlarHostDrawerContent(
         ChatItem(
             text = stringResource(id = R.string.profile),
             image = rememberVectorPainter(image = Icons.Default.Person),
-            onChatClicked = { onDrawerItemClick(HomeScreenClickIntents.OnProfileClicked) }
+            onChatClicked = { onDrawerItemClick(SuperHomeScreenClickIntents.OnProfileClicked) }
         )
         ChatItem(
             text = stringResource(id = R.string.settings),
             image = painterResource(id = R.drawable.settings_sharp),
-            onChatClicked = { onDrawerItemClick(HomeScreenClickIntents.OnSettingsClicked) }
+            onChatClicked = { onDrawerItemClick(SuperHomeScreenClickIntents.OnSettingsClicked) }
         )
     }
 }

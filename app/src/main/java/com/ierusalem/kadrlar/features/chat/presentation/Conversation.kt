@@ -137,7 +137,6 @@ fun Messages(
 ) {
     val scope = rememberCoroutineScope()
     Box(modifier = modifier) {
-
         //fixme
         val authorMe = 1
         LazyColumn(

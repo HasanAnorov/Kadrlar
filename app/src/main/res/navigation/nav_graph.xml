@@ -84,7 +84,7 @@
 
     <fragment
         android:id="@+id/homeFragment2"
-        android:name="com.ierusalem.kadrlar.features.super_user.home.presentation.HomeFragment"
+        android:name="com.ierusalem.kadrlar.features.super_user.home.presentation.SuperHomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment2_to_settingsFragment"

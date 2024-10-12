@@ -17,16 +17,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ierusalem.kadrlar.R
 import com.ierusalem.kadrlar.core.ui.components.AppBar
 import com.ierusalem.kadrlar.core.ui.theme.KadrlarTheme
-import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenState
-import com.ierusalem.kadrlar.features.super_user.home.presentation.components.HomeContent
-import com.ierusalem.kadrlar.features.super_user.home.domain.HomeScreenClickIntents
+import com.ierusalem.kadrlar.features.super_user.home.domain.SuperHomeScreenState
+import com.ierusalem.kadrlar.features.super_user.home.presentation.components.SuperHomeContent
+import com.ierusalem.kadrlar.features.super_user.home.domain.SuperHomeScreenClickIntents
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeUiScreen(
+fun SuperHomeUiScreen(
     modifier: Modifier = Modifier,
-    uiState: HomeScreenState,
-    eventHandler: (HomeScreenClickIntents) -> Unit,
+    uiState: SuperHomeScreenState,
+    eventHandler: (SuperHomeScreenClickIntents) -> Unit,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize()
@@ -39,9 +39,9 @@ fun HomeUiScreen(
                         style = MaterialTheme.typography.titleMedium
                     )
                 },
-                onNavIconPressed = { eventHandler(HomeScreenClickIntents.OnNavIconClicked) },
+                onNavIconPressed = { eventHandler(SuperHomeScreenClickIntents.OnNavIconClicked) },
             )
-            HomeContent(
+            SuperHomeContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1F)
@@ -62,6 +62,6 @@ fun HomeUiScreen(
 @Composable
 private fun PreviewLight() {
     KadrlarTheme {
-        HomeUiScreen(uiState = HomeScreenState(), eventHandler = {})
+        SuperHomeUiScreen(uiState = SuperHomeScreenState(), eventHandler = {})
     }
 }

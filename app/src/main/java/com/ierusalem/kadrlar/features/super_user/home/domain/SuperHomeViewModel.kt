@@ -7,11 +7,11 @@ import com.ierusalem.kadrlar.core.ui.navigation.NavigationEventDelegate
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class HomeViewModel : ViewModel(),
-    NavigationEventDelegate<HomeScreenNavigation> by DefaultNavigationEventDelegate() {
+class SuperHomeViewModel : ViewModel(),
+    NavigationEventDelegate<SuperHomeScreenNavigation> by DefaultNavigationEventDelegate() {
 
-    private val _state: MutableStateFlow<HomeScreenState> = MutableStateFlow(
-        HomeScreenState()
+    private val _state: MutableStateFlow<SuperHomeScreenState> = MutableStateFlow(
+        SuperHomeScreenState()
     )
     val state = _state.asStateFlow()
 
@@ -26,21 +26,21 @@ class HomeViewModel : ViewModel(),
         _drawerShouldBeOpened.value = false
     }
 
-    fun handleClickIntents(intent: HomeScreenClickIntents) {
+    fun handleClickIntents(intent: SuperHomeScreenClickIntents) {
         when (intent) {
-            HomeScreenClickIntents.OnNavIconClicked -> {
+            SuperHomeScreenClickIntents.OnNavIconClicked -> {
                 openDrawer()
             }
-            HomeScreenClickIntents.OnSettingsClicked -> {
-                emitNavigation(HomeScreenNavigation.OnSettingsClicked)
+            SuperHomeScreenClickIntents.OnSettingsClicked -> {
+                emitNavigation(SuperHomeScreenNavigation.OnSettingsClicked)
             }
-            HomeScreenClickIntents.OnProfileClicked -> {
-                emitNavigation(HomeScreenNavigation.OnProfileClicked)
+            SuperHomeScreenClickIntents.OnProfileClicked -> {
+                emitNavigation(SuperHomeScreenNavigation.OnProfileClicked)
             }
         }
     }
 }
 
-data class HomeScreenState(
+data class SuperHomeScreenState(
     val value:String = ""
 )
